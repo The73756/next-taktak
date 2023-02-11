@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .normalLink {
+    @apply flex items-center justify-center gap-3 rounded p-3 font-semibold text-accent transition-colors duration-300 hover:bg-primary xl:justify-start;
+  }
+}
 
 html,
 body {

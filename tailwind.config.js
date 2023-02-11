@@ -6,11 +6,6 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    backgroundColor: (theme) => ({
-      ...theme('colors'),
-      primary: '#F1F1F2',
-      blur: '#030303',
-    }),
     extend: {
       width: {
         1600: '1600px',
@@ -31,9 +26,13 @@ module.exports = {
       top: {
         ' 50%': '50%',
       },
-
+      backgroundColor: {
+        primary: '#F1F1F2',
+        blur: '#030303',
+      },
       colors: {
         primary: 'rgb(22, 24, 35)',
+        accent: 'rgb(245, 25, 151)',
       },
       backgroundImage: {
         'blurred-img':
