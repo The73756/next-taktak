@@ -1,0 +1,15 @@
+@tailwind components;
+
+@layer components {
+  .normalLink {
+    @apply flex items-center justify-center gap-3 rounded p-3 font-semibold text-accent transition-colors duration-300 hover:bg-primary xl:justify-start;
+  }
+
+  .topic {
+    @apply flex cursor-pointer items-center justify-center gap-2 rounded px-3 py-2 text-black transition-colors duration-300 hover:bg-primary xl:rounded-full xl:border-2 xl:border-gray-300;
+  }
+
+  .activeTopic {
+    @apply topic text-accent xl:border-accent;
+  }
+}
