@@ -1,6 +1,16 @@
 import Head from 'next/head';
+import { NextPage } from 'next';
+import { IVideo } from '@/types/video';
+import axios from 'axios';
+import VideoCard from '@/components/VideoCard';
+import NoResults from '@/components/NoResults';
 
-export default function Home() {
+interface IHomeProps {
+  videos: IVideo[];
+}
+
+const Home: NextPage<IHomeProps> = ({ videos }) => {
+  console.log(videos);
   return (
     <>
       <Head>
@@ -10,8 +20,30 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1 className="text-3xl font-bold underline">Hello world!</h1>
+        <div className="videos flex h-full flex-col gap-10">
+          {videos.length ? (
+            videos.map((video) => (
+              <div>
+                <VideoCard post={video} key={video._id} />
+              </div>
+            ))
+          ) : (
+            <NoResults text={'No videos'} />
+          )}
+        </div>
       </main>
     </>
   );
+};
+
+export async function getServerSideProps() {
+  const { data } = await axios.get(`http://localhost:3000/api/post`);
+
+  return {
+    props: {
+      videos: data,
+    },
+  };
 }
+
+export default Home;

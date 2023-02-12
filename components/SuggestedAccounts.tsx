@@ -1,4 +1,6 @@
-const SuggestedAccounts = () => {
+import { FC } from 'react';
+
+const SuggestedAccounts: FC = () => {
   return <div>SuggestedAccounts</div>;
 };
 

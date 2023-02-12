@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { AiOutlineMenu, AiFillHome } from 'react-icons/ai';
 import { ImCancelCircle } from 'react-icons/im';
 import Link from 'next/link';
@@ -7,7 +7,7 @@ import Footer from '@/components/Footer';
 import SuggestedAccounts from '@/components/SuggestedAccounts';
 import Discover from '@/components/Discover';
 
-const Sidebar = () => {
+const Sidebar: FC = () => {
   const [showSidebar, setShowSidebar] = useState(true);
   const userProfile = false;
 
