@@ -12,4 +12,8 @@
   .activeTopic {
     @apply topic text-accent xl:border-accent;
   }
+
+  .footerLink {
+    @apply text-gray-500 hover:underline;
+  }
 }
