@@ -1,6 +1,4 @@
-import { FC } from 'react';
-
-const Footer: FC = () => {
+const Footer = () => {
   return (
     <footer className="mt-6 hidden xl:block">
       <p className="text-sm text-gray-400">

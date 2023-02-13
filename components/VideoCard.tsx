@@ -1,11 +1,10 @@
-import { FC } from 'react';
 import { IVideo } from '@/types/video';
 
 interface IVideoCardProps {
   post: IVideo;
 }
 
-const VideoCard: FC<IVideoCardProps> = ({ post }) => {
+const VideoCard = ({ post }: IVideoCardProps) => {
   return <div>VideoCard</div>;
 };
 

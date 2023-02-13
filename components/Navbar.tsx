@@ -1,10 +1,9 @@
-import { FC } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 import Logo from '@/assets/img/logo.png';
 
-const Navbar: FC = () => {
+const Navbar = () => {
   return (
     <div className="flex w-full items-center justify-between border-b-2 border-gray-200 py-2 px-4">
       <Link href="/">

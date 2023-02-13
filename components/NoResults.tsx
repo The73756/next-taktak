@@ -1,9 +1,7 @@
-import { FC } from 'react';
-
 interface INoResultsProps {
   text: string;
 }
-const NoResults: FC<INoResultsProps> = ({ text }) => {
+const NoResults = ({ text }: INoResultsProps) => {
   return <div>{text}</div>;
 };
 

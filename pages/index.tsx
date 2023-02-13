@@ -23,9 +23,7 @@ const Home: NextPage<IHomeProps> = ({ videos }) => {
         <div className="videos flex h-full flex-col gap-10">
           {videos.length ? (
             videos.map((video) => (
-              <div>
                 <VideoCard post={video} key={video._id} />
-              </div>
             ))
           ) : (
             <NoResults text={'No videos'} />

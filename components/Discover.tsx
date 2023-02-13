@@ -1,9 +1,9 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import { topics } from '@/utils/constants';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-const Discover: FC = () => {
+const Discover = () => {
   const router = useRouter();
   const { topic } = router.query;
   const [activeTopic, setActiveTopic] = useState(topic);
