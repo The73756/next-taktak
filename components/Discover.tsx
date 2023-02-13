@@ -8,14 +8,22 @@ const Discover = () => {
   const { topic } = router.query;
   const [activeTopic, setActiveTopic] = useState(topic);
 
+  const handleTopicClick = (topic: string) => {
+    if (activeTopic === topic) {
+      setActiveTopic('');
+    } else {
+      setActiveTopic(topic);
+    }
+  };
+
   return (
     <div className="pb-6 xl:border-b-2 xl:border-gray-200">
       <p className="m-3 mt-4 hidden font-semibold text-gray-500 xl:block">Popular Topics</p>
       <div className="flex flex-wrap justify-center gap-3">
         {topics.map((item) => (
           <Link
-            href={`/?topic=${item.name}`}
-            onClick={() => setActiveTopic(item.name)}
+            href={activeTopic === item.name ? '/' : `/?topic=${item.name}`}
+            onClick={() => handleTopicClick(item.name)}
             key={item.name}
             className={activeTopic === item.name ? 'activeTopic' : 'topic'}>
             <span className="text-xl font-bold">{item.icon}</span>
