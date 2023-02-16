@@ -13,6 +13,10 @@
     @apply topic text-accent xl:border-accent;
   }
 
+  .videoControlBtn {
+    @apply text-2xl text-black opacity-10 transition-opacity focus:opacity-100 group-hover:opacity-100 lg:text-4xl;
+  }
+
   .footerLink {
     @apply text-gray-500 hover:underline;
   }

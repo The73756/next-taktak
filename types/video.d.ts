@@ -2,8 +2,10 @@ import { IUser } from '@/types/user';
 import { IComment } from '@/types/comment';
 
 interface IVideoAsset {
-  _id: string;
-  url: string;
+  asset: {
+    _id: string;
+    url: string;
+  };
 }
 
 export interface ILike {
