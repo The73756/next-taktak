@@ -9,5 +9,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const data = await client.fetch(query);
       res.status(200).json(data);
   }
-  // res.status(200).json({ name: 'John Doe' });
 }
