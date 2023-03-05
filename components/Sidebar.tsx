@@ -2,23 +2,12 @@ import { useState } from 'react';
 import { AiOutlineMenu, AiFillHome } from 'react-icons/ai';
 import { ImCancelCircle } from 'react-icons/im';
 import Link from 'next/link';
-import { useGoogleLogin } from '@react-oauth/google';
 import Footer from '@/components/Footer';
 import SuggestedAccounts from '@/components/SuggestedAccounts';
 import Discover from '@/components/Discover';
 
 const Sidebar = () => {
   const [showSidebar, setShowSidebar] = useState(true);
-  const userProfile = false;
-
-  const handleLogin = useGoogleLogin({
-    onSuccess: (response) => {
-      console.log(response);
-    },
-    onError: (error) => {
-      console.log(error);
-    },
-  });
 
   return (
     <div>
@@ -37,16 +26,6 @@ const Sidebar = () => {
               <span className="block hidden text-xl xl:block">For You</span>
             </Link>
           </div>
-          {!userProfile && (
-            <div className="hidden px-2 py-4 xl:block">
-              <p className="text-gray-400">Log in to like and comment on videos</p>
-              <button
-                className="mt-3 w-full rounded-md border border-accent bg-white px-4 py-2 text-lg font-semibold text-accent outline-none transition-colors duration-300 hover:bg-accent hover:text-white"
-                onClick={() => handleLogin()}>
-                Log in
-              </button>
-            </div>
-          )}
 
           <Discover />
           <SuggestedAccounts />

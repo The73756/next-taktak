@@ -2,12 +2,13 @@ import { useState } from 'react';
 import useAuthStore from '@/store/authStore';
 import { SanityAssetDocument } from '@sanity/client';
 import axios from 'axios';
-import { router } from 'next/client';
 import VideoUploader from '@/components/VideoUploader';
 import VideoCaptionBlock from '@/components/VideoCaptionBlock';
 import { topics } from '@/utils/constants';
+import { useRouter } from 'next/router';
 
 const Upload = () => {
+  const router = useRouter();
   const [videoAsset, setVideoAsset] = useState<SanityAssetDocument | null>(null);
   const [caption, setCaption] = useState('');
   const [category, setCategory] = useState(topics[0].name);

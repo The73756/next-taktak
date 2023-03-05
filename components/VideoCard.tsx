@@ -45,7 +45,7 @@ const VideoCard = ({ post }: IVideoCardProps) => {
         </Link>
       </div>
       <div className="group relative gap-4 lg:ml-20">
-        <Link href="/" className="rounded-3xl">
+        <Link href={`/detail/${post._id}`} className="rounded-3xl">
           <video
             loop
             ref={videoRef}
