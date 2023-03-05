@@ -1,12 +1,16 @@
-import { FaCloudUploadAlt } from 'react-icons/fa';
 import { ChangeEvent, useState } from 'react';
 import { client } from '@/utils/client';
 import { SanityAssetDocument } from '@sanity/client';
+import { FaCloudUploadAlt } from 'react-icons/fa';
 
-const VideoUploader = () => {
+interface IVideoUploaderProps {
+  videoAsset: SanityAssetDocument | null;
+  setVideoAsset: (videoAsset: SanityAssetDocument | null) => void;
+}
+
+const VideoUploader = ({ videoAsset, setVideoAsset }: IVideoUploaderProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [wrongFileType, setWrongFileType] = useState(false);
-  const [videoAsset, setVideoAsset] = useState<SanityAssetDocument | null>(null);
   const fileTypes = ['video/mp4', 'video/webm', 'video/ogg'];
 
   const handleUpload = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -69,6 +73,11 @@ const VideoUploader = () => {
             </label>
           )}
         </div>
+      )}
+      {wrongFileType && (
+        <p className="mt-4 w-[250px] text-center text-xl font-semibold text-red-400">
+          Please select a video file
+        </p>
       )}
     </div>
   );
