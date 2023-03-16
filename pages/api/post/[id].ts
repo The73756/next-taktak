@@ -6,7 +6,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   switch (req.method) {
     case 'GET':
       const { id } = req.query;
-
       if (!id) {
         res.status(400).json({ message: 'Missing id' });
         return;
