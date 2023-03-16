@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="mt-6 hidden xl:block">
+    <footer className="mt-6  hidden xl:block">
       <p className="text-sm text-gray-400">
         Created by{' '}
         <a className="footerLink" href="https://github.com/The73756">

@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import useAuthStore from '@/store/authStore';
-import { SanityAssetDocument } from '@sanity/client';
+import { useRouter } from 'next/router';
 import axios from 'axios';
+import { topics } from '@/utils/constants';
+import { BASE_URL } from '@/utils';
+import { SanityAssetDocument } from '@sanity/client';
+import useAuthStore from '@/store/authStore';
 import VideoUploader from '@/components/VideoUploader';
 import VideoCaptionBlock from '@/components/VideoCaptionBlock';
-import { topics } from '@/utils/constants';
-import { useRouter } from 'next/router';
 
 const Upload = () => {
   const router = useRouter();
@@ -36,7 +37,7 @@ const Upload = () => {
       };
 
       try {
-        await axios.post('http://localhost:3000/api/post', document);
+        await axios.post(`${BASE_URL}/api/post`, document);
       } catch (e) {
         console.log(e);
       }

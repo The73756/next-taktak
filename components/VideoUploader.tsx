@@ -39,7 +39,7 @@ const VideoUploader = ({ videoAsset, setVideoAsset }: IVideoUploaderProps) => {
   };
 
   return (
-    <div className="hover: mt-10 flex h-[460px] w-[260px] cursor-pointer flex-col items-center justify-center rounded-xl border-4 border-dashed border-gray-200 bg-gray-100 p-10 transition-colors duration-300 hover:border-red-300">
+    <div className=" hover: mt-10 flex h-[460px] w-[260px] cursor-pointer flex-col items-center justify-center rounded-xl border-4 border-dashed border-gray-200 bg-gray-100 p-10 transition-colors duration-300 hover:border-red-300">
       {isLoading ? (
         <p>Uploading...</p>
       ) : (
