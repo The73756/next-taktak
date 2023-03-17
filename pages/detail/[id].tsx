@@ -37,7 +37,7 @@ const Detail = ({ detail }: iDetail) => {
     }
   };
 
-  const handleLikeClick = async (like: boolean) => {
+  const handleLike = async (like: boolean) => {
     const { data } = await axios.put(`${BASE_URL}/api/like`, {
       userId: userProfile?._id,
       postId: video._id,
@@ -84,7 +84,7 @@ const Detail = ({ detail }: iDetail) => {
           </div>
         </div>
 
-        <div className="absolute bottom-5 right-5 cursor-pointer lg:bottom-10  lg:right-10">
+        <div className="absolute  bottom-5 right-5 cursor-pointer lg:bottom-10  lg:right-10">
           {isVideoMuted ? (
             <button onClick={() => setIsVideoMuted(false)}>
               <HiVolumeOff className="text-3xl text-white lg:text-4xl" />
@@ -108,7 +108,7 @@ const Detail = ({ detail }: iDetail) => {
                 src={video.postedBy.image}
               />
               <div>
-                <div className="flex items-center justify-center gap-2 text-xl font-bold lowercase tracking-wider">
+                <div className="flex  items-center justify-center gap-2 text-xl font-bold lowercase tracking-wider">
                   {video.postedBy.userName.replace(/\s+/g, '')}{' '}
                   <GoVerified className="text-xl text-blue-400" />
                 </div>
@@ -120,9 +120,7 @@ const Detail = ({ detail }: iDetail) => {
             <p className=" text-md text-gray-600">{video.caption}</p>
           </div>
           <div className="mt-10 px-10">
-            {userProfile && (
-              <LikeButton likes={video.likes} flex="flex" handleClick={handleLikeClick} />
-            )}
+            {userProfile && <LikeButton likes={video.likes} flex="flex" handleClick={handleLike} />}
           </div>
         </div>
       </div>

@@ -10,28 +10,44 @@ interface ILikeButtonProps {
 }
 
 const LikeButton = ({ likes, flex, handleClick }: ILikeButtonProps) => {
-  const [liked, setIsLiked] = useState(true);
+  const [liked, setIsLiked] = useState(false);
+  const [likesCount, setLikesCount] = useState(likes.length);
   const { userProfile }: any = useAuthStore();
-  let filterLikes = likes?.filter((item: any) => item._ref === userProfile?._id);
+
+  const likesInfo = {
+    prevLikes: likes,
+    liked: !!likes?.filter((item: any) => item._ref === userProfile?._id).length,
+  };
 
   useEffect(() => {
-    if (filterLikes?.length) {
-      setIsLiked(true);
-    } else {
-      setIsLiked(false);
+    setIsLiked(likesInfo.liked);
+  }, []);
+
+  const handleLikeClick = async () => {
+    setIsLiked((prev) => !prev);
+    setLikesCount((prev) => (liked ? prev - 1 : prev + 1));
+
+    try {
+      await handleClick(!liked);
+    } catch (error) {
+      console.log('Error on like, please reload the page', error);
+      setIsLiked(likesInfo.liked);
+      setLikesCount(likesInfo.prevLikes.length);
     }
-  }, [filterLikes, likes]);
+  };
 
   return (
     <div className={`${flex} gap-6`}>
-      <div className="mt-4 flex cursor-pointer flex-col items-center justify-center">
+      <div className="mt-4  flex cursor-pointer flex-col items-center justify-center">
         <button
-          className={`rounded-full bg-primary p-2 ${liked ? 'text-accent' : 'text-black'} md:p-4`}
-          onClick={() => handleClick(!liked)}>
+          className={`rounded-full bg-primary p-2 ${
+            liked ? 'text-accent' : 'text-black'
+          } transition-colors duration-300 md:p-4`}
+          onClick={handleLikeClick}>
           <MdFavorite className="text-lg md:text-2xl" />
         </button>
 
-        <p className="text-md font-semibold ">{likes?.length || 0}</p>
+        <p className="text-md font-semibold ">{likesCount}</p>
       </div>
     </div>
   );
