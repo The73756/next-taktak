@@ -12,6 +12,7 @@ import { BASE_URL } from '@/utils';
 import { IVideo } from '@/types/video';
 import authStore from '@/store/authStore';
 import LikeButton from '@/components/LikeButton';
+import Comments from '@/components/Comments';
 
 interface iDetail {
   detail: IVideo;
@@ -38,13 +39,17 @@ const Detail = ({ detail }: iDetail) => {
   };
 
   const handleLike = async (like: boolean) => {
-    const { data } = await axios.put(`${BASE_URL}/api/like`, {
-      userId: userProfile?._id,
-      postId: video._id,
-      like,
-    });
+    try {
+      const { data } = await axios.put(`${BASE_URL}/api/like`, {
+        userId: userProfile?._id,
+        postId: video._id,
+        like,
+      });
 
-    setVideo({ ...video, likes: data.likes });
+      setVideo({ ...video, likes: data.likes });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -96,8 +101,8 @@ const Detail = ({ detail }: iDetail) => {
           )}
         </div>
       </div>
-      <div className="relative w-[1000px] md:w-[900px] lg:w-[700px]">
-        <div className="mt-10 lg:mt-20">
+      <div className="relative flex w-[1000px] flex-col md:w-[900px] lg:w-[700px]">
+        <div className="mt-10">
           <Link href={`/profile/${video.postedBy._id}`}>
             <div className="mb-4 flex w-full cursor-pointer gap-4 bg-white pl-10">
               <Image
@@ -123,6 +128,7 @@ const Detail = ({ detail }: iDetail) => {
             {userProfile && <LikeButton likes={video.likes} flex="flex" handleClick={handleLike} />}
           </div>
         </div>
+        <Comments video={video} />
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { postDetailQuery } from '@/utils/queries';
 import { client } from '@/utils/client';
+import { uuid } from 'uuidv4';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
@@ -20,5 +21,29 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         console.log(e);
         res.status(500).json({ message: 'Something went wrong' });
       }
+      break;
+    case 'PUT':
+      const { comment, userId } = req.body;
+      const postId = req.query.id;
+
+      try {
+        const data = await client
+          .patch(postId + '')
+          .setIfMissing({ comments: [] })
+          .insert('after', 'comments[-1]', [
+            {
+              comment,
+              _key: uuid(),
+              postedBy: { _type: 'postedBy', _ref: userId },
+            },
+          ])
+          .commit();
+
+        res.status(200).json(data);
+      } catch (e) {
+        console.log(e);
+        res.status(500).json({ message: 'Something went wrong' });
+      }
+      break;
   }
 }
