@@ -25,7 +25,7 @@ const Home: NextPage<IHomeProps> = ({ videos }) => {
           {videos.length ? (
             videos.map((video) => <VideoCard post={video} key={video._id} />)
           ) : (
-            <NoResults text={'No videos'} />
+            <NoResults text={'No videos'} type="video" />
           )}
         </div>
       </main>

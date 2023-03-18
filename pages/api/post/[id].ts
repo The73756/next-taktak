@@ -23,23 +23,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
       break;
     case 'PUT':
-      const { comment, userId } = req.body;
+      const { comment, userProfile } = req.body;
       const postId = req.query.id;
+      const _key = uuid();
 
       try {
-        const data = await client
+        await client
           .patch(postId + '')
           .setIfMissing({ comments: [] })
           .insert('after', 'comments[-1]', [
             {
               comment,
-              _key: uuid(),
-              postedBy: { _type: 'postedBy', _ref: userId },
+              _key,
+              postedBy: { _type: 'postedBy', _ref: userProfile._id },
             },
           ])
           .commit();
 
-        res.status(200).json(data);
+        res.status(200).json({ comment, postedBy: userProfile, _key });
       } catch (e) {
         console.log(e);
         res.status(500).json({ message: 'Something went wrong' });

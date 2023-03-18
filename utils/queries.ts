@@ -15,14 +15,14 @@ export const allPostsQuery = () => {
         image
       },
     likes,
-    comments[]{
+    comments[] {
       comment,
       _key,
       postedBy->{
-      _id,
-      userName,
-      image
-    },
+        _id,
+        userName,
+        image
+      },
     }
   }`;
 };
@@ -48,9 +48,10 @@ export const postDetailQuery = (postId: string | string[]) => {
       comment,
       _key,
       postedBy->{
-        _ref,
-      _id,
-    },
+        _id,
+        userName,
+        image
+      },
     }
   }`;
 };

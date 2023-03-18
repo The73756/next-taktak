@@ -52,6 +52,15 @@ const Detail = ({ detail }: iDetail) => {
     }
   };
 
+  const addComment = async (comment: string) => {
+    const { data } = await axios.put(`${BASE_URL}/api/post/${video._id}`, {
+      userProfile,
+      comment,
+    });
+
+    setVideo({ ...video, comments: [...video.comments, data] });
+  };
+
   useEffect(() => {
     if (video && videoRef.current) {
       videoRef.current.muted = isVideoMuted;
@@ -113,22 +122,21 @@ const Detail = ({ detail }: iDetail) => {
                 src={video.postedBy.image}
               />
               <div>
-                <div className="flex  items-center justify-center gap-2 text-xl font-bold lowercase tracking-wider">
-                  {video.postedBy.userName.replace(/\s+/g, '')}{' '}
-                  <GoVerified className="text-xl text-blue-400" />
+                <div className="flex  items-center justify-center gap-2 text-xl font-bold tracking-wider">
+                  {video.postedBy.userName.trim()} <GoVerified className="text-xl text-blue-400" />
                 </div>
                 <p className="text-md"> {video.postedBy.userName}</p>
               </div>
             </div>
           </Link>
-          <div className="px-10">
-            <p className=" text-md text-gray-600">{video.caption}</p>
+          <div className="mb-3 px-10">
+            <h2 className="text-gray-600">{video.caption}</h2>
           </div>
-          <div className="mt-10 px-10">
+          <div className="mb-3 px-10">
             {userProfile && <LikeButton likes={video.likes} flex="flex" handleClick={handleLike} />}
           </div>
         </div>
-        <Comments video={video} />
+        <Comments addComment={addComment} comments={video.comments} />
       </div>
     </div>
   );
