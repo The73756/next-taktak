@@ -11,7 +11,6 @@ interface IHomeProps {
 }
 
 const Home: NextPage<IHomeProps> = ({ videos }) => {
-  console.log(videos);
   return (
     <>
       <Head>

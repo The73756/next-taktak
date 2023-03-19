@@ -1,12 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { client } from '@/utils/client';
-import { allUsersQuery } from '@/utils/queries';
+import { userSuggestedQuery } from '@/utils/queries';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case 'GET':
+      const { id } = req.query;
+      console.log(id);
+
       try {
-        const data = await client.fetch(allUsersQuery());
+        const data = await client.fetch(userSuggestedQuery(id + ''));
 
         if (data) {
           res.status(200).json(data);
@@ -14,6 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           res.status(204).json([]);
         }
       } catch (e) {
+        console.log(e);
         res.status(500).json('Something went wrong');
       }
   }

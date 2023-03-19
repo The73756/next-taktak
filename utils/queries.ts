@@ -89,8 +89,14 @@ export const singleUserQuery = (userId: string | string[]) => {
   return `*[_type == "user" && _id == '${userId}']`;
 };
 
-export const allUsersQuery = () => {
-  return `*[_type == "user"]`;
+export const userSuggestedQuery = (userId: string | string[]) => {
+  return `*[_type == 'post' && '${userId}' in likes[]._ref ] | order(_createdAt desc) {
+    postedBy->{
+      _id,
+      userName,
+      image
+    },
+  }`;
 };
 
 export const userCreatedPostsQuery = (userId: string | string[]) => {
