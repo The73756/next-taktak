@@ -20,4 +20,8 @@
   .footerLink {
     @apply text-gray-500 hover:underline;
   }
+
+  .activeProfileTab {
+    @apply text-accent;
+  }
 }

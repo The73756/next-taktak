@@ -34,10 +34,9 @@ const SuggestedAccounts = () => {
                 />
               </div>
               <div className="hidden xl:block">
-                <p className="flex items-center gap-1 font-bold text-primary">
-                  <h3>{postedBy.userName}</h3>
-                  <GoVerified className="text-xl text-blue-400" />
-                </p>
+                <h3 className="flex items-center gap-1 font-bold text-primary">
+                  <span>{postedBy.userName}</span> <GoVerified className="text-xl text-blue-400" />
+                </h3>
                 <h4 className="text-xs capitalize text-gray-400">
                   {`${postedBy.givenName || ''} ${postedBy.familyName || ''}`}
                 </h4>

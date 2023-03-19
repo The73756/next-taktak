@@ -17,7 +17,6 @@ export const createOrGetUser = async (response: CredentialResponse, addUser: any
     throw new Error('No credential');
   }
   const decoded: IDecodedUserResponse = jwtDecode(response.credential);
-  console.log(decoded);
   const { name, picture, sub, given_name, family_name } = decoded;
 
   const user = {

@@ -74,7 +74,7 @@ const Detail = ({ detail }: iDetail) => {
       <div className="flex-2 relative flex w-[1000px] items-center justify-center bg-black lg:w-9/12">
         <div className="absolute top-6 left-2 z-50 flex gap-6 opacity-90 lg:left-6">
           <button
-            onClick={() => router.push('/')}
+            onClick={() => router.back()}
             className="transition-opacity duration-300 hover:opacity-70">
             <MdOutlineCancel className="color-red-900 text-[35px] text-white" />
           </button>
