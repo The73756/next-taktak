@@ -5,7 +5,7 @@ import { GoogleLogin, googleLogout } from '@react-oauth/google';
 import { createOrGetUser } from '@/utils';
 import { IoMdAdd } from 'react-icons/io';
 import { AiOutlineLogout } from 'react-icons/ai';
-
+import Search from '@/components/Search';
 import Logo from '@/assets/img/logo.png';
 
 const Navbar = () => {
@@ -18,7 +18,9 @@ const Navbar = () => {
           <Image src={Logo} alt="Tak Tak logo" height={38} />
         </span>
       </Link>
-      <div>Search</div>
+
+      <Search />
+
       <div>
         {userProfile ? (
           <div className="flex gap-5 md:gap-10">
