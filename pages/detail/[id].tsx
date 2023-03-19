@@ -58,7 +58,7 @@ const Detail = ({ detail }: iDetail) => {
       comment,
     });
 
-    setVideo({ ...video, comments: [...video.comments, data] });
+    setVideo({ ...video, comments: [...(video.comments || []), data] });
   };
 
   useEffect(() => {
@@ -122,10 +122,11 @@ const Detail = ({ detail }: iDetail) => {
                 src={video.postedBy.image}
               />
               <div>
-                <div className="flex  items-center justify-center gap-2 text-xl font-bold tracking-wider">
-                  {video.postedBy.userName.trim()} <GoVerified className="text-xl text-blue-400" />
+                <div className="flex items-center justify-center gap-2 text-xl font-bold tracking-wider">
+                  <h3>{video.postedBy.userName} </h3>
+                  <GoVerified className="text-xl text-blue-400" />
                 </div>
-                <p className="text-md"> {video.postedBy.userName}</p>
+                <h4>{`${video.postedBy.givenName || ''} ${video.postedBy.familyName || ''}`}</h4>
               </div>
             </div>
           </Link>
@@ -133,10 +134,12 @@ const Detail = ({ detail }: iDetail) => {
             <h2 className="text-gray-600">{video.caption}</h2>
           </div>
           <div className="mb-3 px-10">
-            {userProfile && <LikeButton likes={video.likes} flex="flex" handleClick={handleLike} />}
+            {userProfile && (
+              <LikeButton likes={video.likes || []} flex="flex" handleClick={handleLike} />
+            )}
           </div>
         </div>
-        <Comments addComment={addComment} comments={video.comments} />
+        <Comments addComment={addComment} comments={video.comments || []} />
       </div>
     </div>
   );

@@ -12,10 +12,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return;
       }
 
-      const query = postDetailQuery(id);
-
       try {
-        const data = await client.fetch(query);
+        const data = await client.fetch(postDetailQuery(id));
         res.status(200).json(data[0]);
       } catch (e) {
         console.log(e);

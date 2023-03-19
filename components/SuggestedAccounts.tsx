@@ -15,7 +15,7 @@ const SuggestedAccounts = () => {
 
   if (!userProfile) return <h2>Вы еще не вошли в аккаунт</h2>;
 
-  if (!suggestedUsers) return <h2>Нет рекомендуемых пользователей</h2>;
+  if (!suggestedUsers.length) return <h2>Нет рекомендуемых пользователей</h2>;
 
   return (
     <div className="border-gray-200 pb-4 xl:border-b-2">
@@ -33,13 +33,14 @@ const SuggestedAccounts = () => {
                   alt={`${postedBy.userName} profile image`}
                 />
               </div>
-
               <div className="hidden xl:block">
-                <p className="text-md flex items-center gap-1 font-bold text-primary">
-                  {postedBy.userName.trim()}
-                  <GoVerified className="text-blue-400" />
+                <p className="flex items-center gap-1 font-bold text-primary">
+                  <h3>{postedBy.userName}</h3>
+                  <GoVerified className="text-xl text-blue-400" />
                 </p>
-                <p className="text-xs capitalize text-gray-400">{postedBy.userName}</p>
+                <h4 className="text-xs capitalize text-gray-400">
+                  {`${postedBy.givenName || ''} ${postedBy.familyName || ''}`}
+                </h4>
               </div>
             </div>
           </Link>

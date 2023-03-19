@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react';
+import { IComment } from '@/types/comment';
 import useAuthStore from '@/store/authStore';
 import NoResults from '@/components/NoResults';
-import { IComment } from '@/types/comment';
 import CommentItem from '@/components/CommentItem';
 
 interface ICommentsProps {

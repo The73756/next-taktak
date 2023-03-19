@@ -21,6 +21,8 @@ export const allPostsQuery = () => {
       postedBy->{
         _id,
         userName,
+        givenName,
+        familyName,
         image
       },
     }
@@ -41,6 +43,8 @@ export const postDetailQuery = (postId: string | string[]) => {
     postedBy->{
       _id,
       userName,
+      givenName,
+      familyName,
       image
     },
      likes,
@@ -50,6 +54,8 @@ export const postDetailQuery = (postId: string | string[]) => {
       postedBy->{
         _id,
         userName,
+        givenName,
+        familyName,
         image
       },
     }
@@ -70,6 +76,8 @@ export const searchPostsQuery = (searchTerm: string | string[]) => {
     postedBy->{
       _id,
       userName,
+      givenName,
+      familyName,
       image
     },
 likes,
@@ -79,6 +87,8 @@ likes,
       postedBy->{
       _id,
       userName,
+      givenName,
+      familyName,
       image
     },
     }
@@ -94,6 +104,8 @@ export const userSuggestedQuery = (userId: string | string[]) => {
     postedBy->{
       _id,
       userName,
+      givenName,
+      familyName,
       image
     },
   }`;
@@ -113,6 +125,8 @@ export const userCreatedPostsQuery = (userId: string | string[]) => {
     postedBy->{
       _id,
       userName,
+      givenName,
+      familyName,
       image
     },
  likes,
@@ -123,6 +137,8 @@ export const userCreatedPostsQuery = (userId: string | string[]) => {
       postedBy->{
       _id,
       userName,
+      givenName,
+      familyName,
       image
     },
     }
@@ -143,6 +159,8 @@ export const userLikedPostsQuery = (userId: string | string[]) => {
     postedBy->{
       _id,
       userName,
+      givenName,
+      familyName,
       image
     },
  likes,
@@ -153,6 +171,8 @@ export const userLikedPostsQuery = (userId: string | string[]) => {
       postedBy->{
       _id,
       userName,
+      givenName,
+      familyName,
       image
     },
     }
@@ -173,6 +193,8 @@ export const topicPostsQuery = (topic: string | string[]) => {
     postedBy->{
       _id,
       userName,
+      givenName,
+      familyName,
       image
     },
  likes,
@@ -183,6 +205,8 @@ export const topicPostsQuery = (topic: string | string[]) => {
       postedBy->{
       _id,
       userName,
+      givenName,
+      familyName,
       image
     },
     }

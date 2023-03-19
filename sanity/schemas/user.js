@@ -13,5 +13,15 @@ export default {
       title: 'Image',
       type: 'string',
     },
+    {
+      name: 'givenName',
+      title: 'Given Name',
+      type: 'string',
+    },
+    {
+      name: 'familyName',
+      title: 'Family Name',
+      type: 'string',
+    },
   ],
 };

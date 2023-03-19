@@ -6,7 +6,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   switch (req.method) {
     case 'GET':
       const { id } = req.query;
-      console.log(id);
 
       try {
         const data = await client.fetch(userSuggestedQuery(id + ''));

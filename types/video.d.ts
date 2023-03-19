@@ -9,7 +9,7 @@ interface IVideoAsset {
 }
 
 export interface ILike {
-  postedBy: Omit<IUser, '_type'>;
+  postedBy: IUser;
 }
 
 export interface IVideo {
@@ -17,7 +17,7 @@ export interface IVideo {
   _id: string;
   userId: string;
   video: IVideoAsset;
-  postedBy: Omit<IUser, '_type'>;
-  likes: ILike[];
-  comments: IComment[];
+  postedBy: IUser;
+  likes: ILike[] | null;
+  comments: IComment[] | null;
 }

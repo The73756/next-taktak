@@ -1,10 +1,10 @@
 import { IVideo } from '@/types/video';
 import { HiVolumeUp, HiVolumeOff } from 'react-icons/hi';
 import { BsFillPlayFill, BsFillPauseFill } from 'react-icons/bs';
-import { GoVerified } from 'react-icons/go';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useRef, useState } from 'react';
+import { GoVerified } from 'react-icons/go';
+import Image from 'next/image';
 
 interface IVideoCardProps {
   post: IVideo;
@@ -14,6 +14,7 @@ const VideoCard = ({ post }: IVideoCardProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isVideoMuted, setIsVideoMuted] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const { postedBy, video } = post;
 
   const handleVideoClick = () => {
     if (!videoRef.current) return;
@@ -29,8 +30,8 @@ const VideoCard = ({ post }: IVideoCardProps) => {
 
   return (
     <article className="flex flex-col border-b-2 border-gray-200 pb-6">
-      <div className="flex gap-3 rounded p-2 font-semibold">
-        <Link href="/" className="md-16 h-10 w-10 md:w-16">
+      <Link href={`/profile/${postedBy._id}`} className="flex gap-3 rounded p-2 font-semibold">
+        <div className="h-10 w-10 md:w-16">
           <Image
             src={post.postedBy.image}
             alt={`${post.postedBy.userName} profile photo`}
@@ -38,19 +39,19 @@ const VideoCard = ({ post }: IVideoCardProps) => {
             height={62}
             className="rounded-full"
           />
-        </Link>
-        <Link href="/" className="flex items-center gap-2">
+        </div>
+        <div className="flex items-center gap-2">
           <h3 className="font-bold text-primary">{post.postedBy.userName}</h3>
           <GoVerified className="text-lg text-blue-400" />
-        </Link>
-      </div>
+        </div>
+      </Link>
       <div className="group relative gap-4 lg:ml-20">
         <Link href={`/detail/${post._id}`} className="rounded-3xl">
           <video
             loop
             ref={videoRef}
             muted={isVideoMuted}
-            src={post.video.asset.url}
+            src={video.asset.url}
             className="h-[300px] w-[200px] rounded-3xl bg-gray-100 md:h-[400px] lg:h-[530px] lg:w-[600px]"
           />
         </Link>

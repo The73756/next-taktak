@@ -10,6 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         await client.createIfNotExists(user);
         res.status(200).json('Login successful');
       } catch (e) {
+        console.log(e);
         res.status(400).json('Login failed');
       }
   }

@@ -1,12 +1,13 @@
 import jwtDecode from 'jwt-decode';
 import { CredentialResponse } from '@react-oauth/google';
 import axios from 'axios';
-import { IUser } from '@/types/user';
 
 export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 interface IDecodedUserResponse {
   name: string;
+  given_name: string;
+  family_name: string;
   picture: string;
   sub: string;
 }
@@ -16,12 +17,15 @@ export const createOrGetUser = async (response: CredentialResponse, addUser: any
     throw new Error('No credential');
   }
   const decoded: IDecodedUserResponse = jwtDecode(response.credential);
-  const { name, picture, sub } = decoded;
+  console.log(decoded);
+  const { name, picture, sub, given_name, family_name } = decoded;
 
-  const user: IUser = {
+  const user = {
     _id: sub,
     _type: 'user',
     userName: name,
+    givenName: family_name || '',
+    familyName: given_name || '',
     image: picture,
   };
 
