@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { topics } from '@/modules/Sidebar/constants/topics';
+import { topics } from '@/utils/topics';
 
 export const Discover = () => {
   const router = useRouter();

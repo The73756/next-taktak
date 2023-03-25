@@ -1,5 +1,6 @@
-import { GetServerSidePropsContext, NextPage } from 'next';
-import { useState } from 'react';
+import { GetServerSidePropsContext } from 'next';
+import { NextPageWithLayout } from '@/pages/_app';
+import { ReactElement, useState } from 'react';
 import Image from 'next/image';
 import axios from 'axios';
 import { GoVerified } from 'react-icons/go';
@@ -7,6 +8,7 @@ import { IUserDetail } from '@/types/user';
 import { BASE_URL } from '@/utils';
 import NoResults from '@/components/NoResults';
 import VideoCard from '@/components/VideoCard';
+import { Layout } from '@/components/Layout';
 
 interface IProfileProps {
   detail: IUserDetail;
@@ -14,7 +16,7 @@ interface IProfileProps {
 
 /* TODO: переписать на норм компоненты, потом */
 
-const Profile: NextPage<IProfileProps> = ({ detail }) => {
+const Profile: NextPageWithLayout<IProfileProps> = ({ detail }) => {
   const { user, userLikes, userVideos } = detail;
   const [showVideos, setShowVideos] = useState(true);
 
@@ -70,6 +72,10 @@ const Profile: NextPage<IProfileProps> = ({ detail }) => {
       </div>
     </div>
   );
+};
+
+Profile.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>;
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {

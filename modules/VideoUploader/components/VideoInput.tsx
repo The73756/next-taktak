@@ -1,17 +1,18 @@
 import { ChangeEvent, useState } from 'react';
-import { client } from '@/utils/client';
 import { SanityAssetDocument } from '@sanity/client';
 import { FaCloudUploadAlt } from 'react-icons/fa';
+import { uploadVideo } from '@/modules/VideoUploader/http/uploadVideo';
+import { fileTypes } from '@/modules/VideoUploader/constants/fileTypes';
 
 interface IVideoUploaderProps {
   videoAsset: SanityAssetDocument | null;
   setVideoAsset: (videoAsset: SanityAssetDocument | null) => void;
 }
 
-const VideoUploader = ({ videoAsset, setVideoAsset }: IVideoUploaderProps) => {
+export const VideoInput = ({ videoAsset, setVideoAsset }: IVideoUploaderProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [wrongFileType, setWrongFileType] = useState(false);
-  const fileTypes = ['video/mp4', 'video/webm', 'video/ogg'];
+  console.log(videoAsset);
 
   const handleUpload = async (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
@@ -26,10 +27,7 @@ const VideoUploader = ({ videoAsset, setVideoAsset }: IVideoUploaderProps) => {
 
     try {
       setIsLoading(true);
-      const data = await client.assets.upload('file', selectedFile, {
-        contentType: selectedFile.type,
-        filename: selectedFile.name,
-      });
+      const data = await uploadVideo(selectedFile);
       setVideoAsset(data);
     } catch (error) {
       console.log(error);
@@ -39,19 +37,20 @@ const VideoUploader = ({ videoAsset, setVideoAsset }: IVideoUploaderProps) => {
   };
 
   return (
-    <div className=" hover: mt-10 flex h-[460px] w-[260px] cursor-pointer flex-col items-center justify-center rounded-xl border-4 border-dashed border-gray-200 bg-gray-100 p-10 transition-colors duration-300 hover:border-red-300">
+    <div
+      className={`hover: mt-10 flex h-[460px] w-[260px] cursor-pointer flex-col items-center justify-center rounded-xl border-4 border-dashed border-gray-200 ${
+        videoAsset ? '' : 'p-10'
+      } bg-gray-100 transition-colors duration-300 hover:border-red-300`}>
       {isLoading ? (
         <p>Uploading...</p>
       ) : (
-        <div>
+        <>
           {videoAsset ? (
-            <div>
-              <video
-                src={videoAsset.url}
-                loop
-                controls
-                className="mt-16 h-[450px] rounded-xl bg-black "></video>
-            </div>
+            <video
+              src={videoAsset.url}
+              loop
+              controls
+              className="h-full w-full rounded-xl bg-black"></video>
           ) : (
             <label className="cursor-pointer ">
               <div className=" flex h-full flex-col items-center justify-center">
@@ -72,7 +71,7 @@ const VideoUploader = ({ videoAsset, setVideoAsset }: IVideoUploaderProps) => {
               <input type="file" name="upload-video" className="h-0 w-0" onChange={handleUpload} />
             </label>
           )}
-        </div>
+        </>
       )}
       {wrongFileType && (
         <p className="mt-4 w-[250px] text-center text-xl font-semibold text-red-400">
@@ -82,5 +81,3 @@ const VideoUploader = ({ videoAsset, setVideoAsset }: IVideoUploaderProps) => {
     </div>
   );
 };
-
-export default VideoUploader;

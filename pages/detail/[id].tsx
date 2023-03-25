@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { GetServerSidePropsContext } from 'next';
-import { useEffect, useRef, useState } from 'react';
+import { ReactElement, useEffect, useRef, useState } from 'react';
+import { NextPageWithLayout } from '@/pages/_app';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -13,12 +14,13 @@ import { IVideo } from '@/types/video';
 import authStore from '@/store/authStore';
 import LikeButton from '@/components/LikeButton';
 import Comments from '@/components/Comments';
+import { Layout } from '@/components/Layout';
 
-interface iDetail {
+interface IDetailProps {
   detail: IVideo;
 }
 
-const Detail = ({ detail }: iDetail) => {
+const Detail: NextPageWithLayout<IDetailProps> = ({ detail }) => {
   const [video, setVideo] = useState(detail);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [isVideoMuted, setIsVideoMuted] = useState(false);
@@ -143,6 +145,10 @@ const Detail = ({ detail }: iDetail) => {
       </div>
     </div>
   );
+};
+
+Detail.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>;
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {

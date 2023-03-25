@@ -1,12 +1,21 @@
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
+import type { NextPage } from 'next';
+import type { ReactElement, ReactNode } from 'react';
 import { useEffect, useState } from 'react';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import { Header } from '@/modules/Header';
-import { Sidebar } from '@/modules/Sidebar';
 
-export default function App({ Component, pageProps }: AppProps) {
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const [isSSR, setIsSSR] = useState(true);
+  const getLayout = Component.getLayout ?? ((page) => page);
 
   useEffect(() => {
     setIsSSR(false);
@@ -14,19 +23,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
   if (isSSR) return null;
 
-  return (
+  return getLayout(
     <GoogleOAuthProvider clientId={'' + process.env.NEXT_PUBLIC_GOOGLE_API_TOKEN}>
-      <div className="m-auto overflow-hidden xl:w-[1400px]">
-        <Header />
-        <div className="flex gap-6 md:gap-20">
-          <div className="h-[92vh] overflow-hidden xl:overflow-auto">
-            <Sidebar />
-          </div>
-          <div className="videos mt-4 flex h-[88vh] flex-1 flex-col gap-10 overflow-auto">
-            <Component {...pageProps} />
-          </div>
-        </div>
-      </div>
-    </GoogleOAuthProvider>
+      <Component {...pageProps} />
+    </GoogleOAuthProvider>,
   );
 }

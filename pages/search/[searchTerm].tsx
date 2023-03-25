@@ -1,22 +1,24 @@
 import axios from 'axios';
 import { BASE_URL } from '@/utils';
-import { GetServerSidePropsContext, NextPage } from 'next';
+import { GetServerSidePropsContext } from 'next';
+import { NextPageWithLayout } from '@/pages/_app';
 import { IUser } from '@/types/user';
 import { IVideo } from '@/types/video';
-import { useState } from 'react';
+import { ReactElement, useState } from 'react';
 import Image from 'next/image';
 import NoResults from '@/components/NoResults';
 import { useRouter } from 'next/router';
 import { GoVerified } from 'react-icons/go';
 import VideoCard from '@/components/VideoCard';
 import Link from 'next/link';
+import { Layout } from '@/components/Layout';
 
 interface ISearchProps {
   videos: IVideo[] | [];
   users: IUser[] | [];
 }
 
-const Search: NextPage<ISearchProps> = ({ videos, users }) => {
+const Search: NextPageWithLayout<ISearchProps> = ({ videos, users }) => {
   const router = useRouter();
   const { searchTerm } = router.query;
   const [showVideos, setShowVideos] = useState(true);
@@ -80,13 +82,14 @@ const Search: NextPage<ISearchProps> = ({ videos, users }) => {
   );
 };
 
-export default Search;
+Search.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>;
+};
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { data } = await axios.get<ISearchProps>(
     `${BASE_URL}/api/search/${context.query.searchTerm}`,
   );
-
   return {
     props: {
       videos: data.videos,
@@ -94,3 +97,5 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     },
   };
 }
+
+export default Search;

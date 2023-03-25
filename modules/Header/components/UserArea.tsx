@@ -15,6 +15,8 @@ export const UserArea = () => {
         onSuccess={(response) => {
           void createOrGetUser(response, addUser);
         }}
+        useOneTap
+        auto_select
       />
     );
   }

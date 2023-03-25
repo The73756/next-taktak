@@ -10,7 +10,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       break;
     case 'POST':
       const document = req.body;
-      console.log(document);
 
       try {
         await client.create(document);

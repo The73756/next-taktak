@@ -1,16 +1,19 @@
-import Head from 'next/head';
-import { GetServerSidePropsContext, NextPage } from 'next';
-import { IVideo } from '@/types/video';
 import axios from 'axios';
+import Head from 'next/head';
+import { GetServerSidePropsContext } from 'next';
+import { ReactElement } from 'react';
+import { NextPageWithLayout } from '@/pages/_app';
+import { IVideo } from '@/types/video';
 import VideoCard from '@/components/VideoCard';
 import NoResults from '@/components/NoResults';
 import { BASE_URL } from '@/utils';
+import { Layout } from '@/components/Layout';
 
 interface IHomeProps {
   videos: IVideo[];
 }
 
-const Home: NextPage<IHomeProps> = ({ videos }) => {
+const Home: NextPageWithLayout<IHomeProps> = ({ videos }) => {
   return (
     <>
       <Head>
@@ -30,6 +33,10 @@ const Home: NextPage<IHomeProps> = ({ videos }) => {
       </main>
     </>
   );
+};
+
+Home.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>;
 };
 
 export async function getServerSideProps({ query }: GetServerSidePropsContext) {
