@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { topics } from '@/utils/constants';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { topics } from '@/modules/Sidebar/constants/topics';
 
-const Discover = () => {
+export const Discover = () => {
   const router = useRouter();
   const { topic } = router.query;
   const [activeTopic, setActiveTopic] = useState(topic);
@@ -34,5 +34,3 @@ const Discover = () => {
     </div>
   );
 };
-
-export default Discover;

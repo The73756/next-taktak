@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import useAuthStore from '@/store/authStore';
 
-const SuggestedAccounts = () => {
+export const SuggestedAccounts = () => {
   const { suggestedUsers, fetchSuggestedUser, userProfile } = useAuthStore();
 
   useEffect(() => {
@@ -48,5 +48,3 @@ const SuggestedAccounts = () => {
     </div>
   );
 };
-
-export default SuggestedAccounts;

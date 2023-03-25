@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { AiOutlineMenu, AiFillHome } from 'react-icons/ai';
 import { ImCancelCircle } from 'react-icons/im';
 import Link from 'next/link';
-import Footer from '@/components/Footer';
-import SuggestedAccounts from '@/components/SuggestedAccounts';
-import Discover from '@/components/Discover';
+import { Footer } from '@/modules/Sidebar/components/Footer';
+import { SuggestedAccounts } from '@/modules/Sidebar/components/SuggestedAccounts';
+import { Discover } from '@/modules/Sidebar/components/Discover';
 
-const Sidebar = () => {
+export const Sidebar = () => {
   const [showSidebar, setShowSidebar] = useState(true);
 
   return (
@@ -35,5 +35,3 @@ const Sidebar = () => {
     </div>
   );
 };
-
-export default Sidebar;

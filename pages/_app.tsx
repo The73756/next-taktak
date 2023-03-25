@@ -2,8 +2,8 @@ import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import { useEffect, useState } from 'react';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import { Sidebar } from '@/modules/Sidebar';
 import Navbar from '@/components/Navbar';
-import Sidebar from '@/components/Sidebar';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isSSR, setIsSSR] = useState(true);
