@@ -42,18 +42,18 @@ const Profile: NextPage<IProfileProps> = ({ detail }) => {
         </div>
       </div>
       <div className="mb-6 flex w-full gap-10 border-b-2 border-gray-200 bg-white p-2">
-        <p
+        <button
           className={`cursor-pointer text-xl font-semibold 
-          ${showVideos ? 'activeProfileTab' : ''} mt-2 transition-colors duration-300`}
+          ${showVideos ? 'activeTab' : ''} mt-2 transition-colors duration-300`}
           onClick={() => setShowVideos(true)}>
           Videos
-        </p>
-        <p
+        </button>
+        <button
           className={`cursor-pointer text-xl font-semibold 
-          ${!showVideos ? 'activeProfileTab' : ''} mt-2 transition-colors duration-300`}
+          ${!showVideos ? 'activeTab' : ''} mt-2 transition-colors duration-300`}
           onClick={() => setShowVideos(false)}>
           Liked
-        </p>
+        </button>
       </div>
       <div className="flex flex-wrap gap-6 md:justify-start">
         {showVideos ? (

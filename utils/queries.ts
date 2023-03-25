@@ -95,6 +95,16 @@ likes,
   }`;
 };
 
+export const searchUsersQuery = (searchTerm: string | string[]) => {
+  return `*[_type == "user" && userName match '${searchTerm}*'] {
+    _id,
+    userName,
+    givenName,
+    familyName,
+    image
+  }`;
+};
+
 export const singleUserQuery = (userId: string | string[]) => {
   return `*[_type == "user" && _id == '${userId}']`;
 };
