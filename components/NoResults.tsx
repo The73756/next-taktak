@@ -4,10 +4,11 @@ import { BiCommentX } from 'react-icons/bi';
 interface INoResultsProps {
   text: string;
   type: 'video' | 'comment';
+  className?: string;
 }
-const NoResults = ({ text, type }: INoResultsProps) => {
+const NoResults = ({ text, type, className }: INoResultsProps) => {
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center">
+    <div className={`flex h-full w-full flex-col items-center justify-center ${className}`}>
       <span className="text-6xl">
         {type === 'video' ? <MdOutlineVideocamOff /> : <BiCommentX />}
       </span>
