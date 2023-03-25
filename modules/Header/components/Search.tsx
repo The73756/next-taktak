@@ -2,7 +2,7 @@ import { FormEvent, useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
 import { useRouter } from 'next/router';
 
-const Search = () => {
+export const Search = () => {
   const [searchValue, setSearchValue] = useState('');
   const router = useRouter();
 
@@ -32,5 +32,3 @@ const Search = () => {
     </div>
   );
 };
-
-export default Search;
