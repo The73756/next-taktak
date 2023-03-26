@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
+import useAuthStore from '@/store/authStore';
 import { MdFavorite } from 'react-icons/md';
 import { ILike } from '@/types/video';
-import useAuthStore from '@/store/authStore';
 
 interface ILikeButtonProps {
   likes: ILike[];
@@ -16,7 +16,7 @@ const LikeButton = ({ likes, flex, handleClick }: ILikeButtonProps) => {
 
   const likesInfo = {
     prevLikes: likes,
-    liked: !!likes?.filter((item: any) => item._ref === userProfile?._id).length,
+    liked: !!likes?.filter((item) => item._ref === userProfile?._id).length,
   };
 
   useEffect(() => {

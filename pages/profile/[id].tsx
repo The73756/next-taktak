@@ -1,14 +1,13 @@
+import axios from 'axios';
 import { GetServerSidePropsContext } from 'next';
 import { NextPageWithLayout } from '@/pages/_app';
 import { ReactElement, useState } from 'react';
-import Image from 'next/image';
-import axios from 'axios';
-import { GoVerified } from 'react-icons/go';
 import { IUserDetail } from '@/types/user';
 import { BASE_URL } from '@/utils';
 import { Layout } from '@/components/Layout';
 import { VideoList } from '@/modules/VideoList';
 import { TabSwitcher } from '@/components/TabSwitcher';
+import { UserInfo } from '@/ui/UserInfo';
 
 interface IProfileProps {
   detail: IUserDetail;
@@ -33,25 +32,7 @@ const Profile: NextPageWithLayout<IProfileProps> = ({ detail }) => {
   return (
     <div className="w-full">
       <div className="mb-4 flex w-full gap-6 bg-white ">
-        <div className="h-16 w-16 md:h-20 md:w-20">
-          <Image
-            width={120}
-            height={120}
-            className="rounded-full"
-            src={user.image}
-            alt={`${user.userName} profile photo`}
-          />
-        </div>
-
-        <div>
-          <div className="text-md flex items-center justify-center gap-2 font-bold tracking-wider md:text-2xl">
-            <h2>{user.userName}</h2>
-            <GoVerified className="text-md text-blue-400 md:text-xl" />
-          </div>
-          <h3 className="text-sm font-medium">
-            {`${user.givenName || ''} ${user.familyName || ''}`}
-          </h3>
-        </div>
+        <UserInfo user={user} />
       </div>
       <div className="mb-6 flex w-full gap-10 border-b-2 border-gray-200 bg-white p-2">
         <TabSwitcher activeEl={activeTab} setActiveEl={setActiveTab} elements={tabs} />

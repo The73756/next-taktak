@@ -9,6 +9,7 @@ interface IVideoAsset {
 }
 
 export interface ILike {
+  _ref: string;
   postedBy: IUser;
 }
 
