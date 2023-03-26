@@ -23,9 +23,9 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 
   if (isSSR) return null;
 
-  return getLayout(
+  return (
     <GoogleOAuthProvider clientId={'' + process.env.NEXT_PUBLIC_GOOGLE_API_TOKEN}>
-      <Component {...pageProps} />
-    </GoogleOAuthProvider>,
+      {getLayout(<Component {...pageProps} />)}
+    </GoogleOAuthProvider>
   );
 }

@@ -4,10 +4,9 @@ import { GetServerSidePropsContext } from 'next';
 import { ReactElement } from 'react';
 import { NextPageWithLayout } from '@/pages/_app';
 import { IVideo } from '@/types/video';
-import VideoCard from '@/components/VideoCard';
-import NoResults from '@/components/NoResults';
 import { BASE_URL } from '@/utils';
 import { Layout } from '@/components/Layout';
+import { VideoList } from '@/modules/VideoList';
 
 interface IHomeProps {
   videos: IVideo[];
@@ -23,13 +22,7 @@ const Home: NextPageWithLayout<IHomeProps> = ({ videos }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="h-full">
-        <div className="videos flex h-full flex-col gap-10">
-          {videos.length ? (
-            videos.map((video) => <VideoCard post={video} key={video._id} />)
-          ) : (
-            <NoResults text={'No videos'} type="video" className="-mt-32" />
-          )}
-        </div>
+        <VideoList videos={videos} />
       </main>
     </>
   );
