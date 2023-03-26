@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { IVideo } from '@/types/video';
 import { GoVerified } from 'react-icons/go';
-import { VideoPlayer } from '@/modules/VideoList/components/VideoPlayer';
+import { VideoPlayer } from '@/components/VideoPlayer';
 
 interface IVideoCardProps {
   post: IVideo;

@@ -6,19 +6,29 @@ import axios from 'axios';
 import { GoVerified } from 'react-icons/go';
 import { IUserDetail } from '@/types/user';
 import { BASE_URL } from '@/utils';
-import NoResults from '@/components/NoResults';
-import VideoCard from '@/components/VideoCard';
 import { Layout } from '@/components/Layout';
+import { VideoList } from '@/modules/VideoList';
+import { TabSwitcher } from '@/components/TabSwitcher';
 
 interface IProfileProps {
   detail: IUserDetail;
 }
 
-/* TODO: переписать на норм компоненты, потом */
-
 const Profile: NextPageWithLayout<IProfileProps> = ({ detail }) => {
   const { user, userLikes, userVideos } = detail;
-  const [showVideos, setShowVideos] = useState(true);
+
+  const tabs = [
+    {
+      label: 'Videos',
+      component: <VideoList videos={userVideos} />,
+    },
+    {
+      label: 'Liked',
+      component: <VideoList videos={userLikes} />,
+    },
+  ];
+
+  const [activeTab, setActiveTab] = useState(tabs[0]);
 
   return (
     <div className="w-full">
@@ -44,32 +54,9 @@ const Profile: NextPageWithLayout<IProfileProps> = ({ detail }) => {
         </div>
       </div>
       <div className="mb-6 flex w-full gap-10 border-b-2 border-gray-200 bg-white p-2">
-        <button
-          className={`cursor-pointer text-xl font-semibold 
-          ${showVideos ? 'activeTab' : ''} mt-2 transition-colors duration-300`}
-          onClick={() => setShowVideos(true)}>
-          Videos
-        </button>
-        <button
-          className={`cursor-pointer text-xl font-semibold 
-          ${!showVideos ? 'activeTab' : ''} mt-2 transition-colors duration-300`}
-          onClick={() => setShowVideos(false)}>
-          Liked
-        </button>
+        <TabSwitcher activeEl={activeTab} setActiveEl={setActiveTab} elements={tabs} />
       </div>
-      <div className="flex flex-wrap gap-6 md:justify-start">
-        {showVideos ? (
-          userVideos.length > 0 ? (
-            userVideos.map((post) => <VideoCard key={post._id} post={post} />)
-          ) : (
-            <NoResults text={`No Videos Yet`} type="video" />
-          )
-        ) : userLikes.length > 0 ? (
-          userLikes.map((post) => <VideoCard key={post._id} post={post} />)
-        ) : (
-          <NoResults text={`No Likes Yet`} type="video" />
-        )}
-      </div>
+      <div className="flex flex-wrap gap-6 md:justify-start">{activeTab.component}</div>
     </div>
   );
 };
