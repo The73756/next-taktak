@@ -110,14 +110,12 @@ export const singleUserQuery = (userId: string | string[]) => {
 };
 
 export const userSuggestedQuery = (userId: string | string[]) => {
-  return `*[_type == 'post' && '${userId}' in likes[]._ref ] | order(_createdAt desc) {
-    postedBy->{
-      _id,
-      userName,
-      givenName,
-      familyName,
-      image
-    },
+  return `*[_type == "user" && _id != '${userId}'] [0...6]{
+    _id,
+    userName,
+    givenName,
+    familyName,
+    image
   }`;
 };
 

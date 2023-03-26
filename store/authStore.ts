@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { ISuggestedUser, IUser } from '@/types/user';
+import { IUser } from '@/types/user';
 import { BASE_URL } from '@/utils';
 
 import axios from 'axios';
@@ -9,7 +9,7 @@ interface IAuthStore {
   userProfile: IUser | null;
   addUser: (user: IUser) => void;
   removeUser: () => void;
-  suggestedUsers: ISuggestedUser[];
+  suggestedUsers: IUser[];
   fetchSuggestedUser: (userId: string) => Promise<void>;
 }
 
@@ -21,7 +21,7 @@ const useAuthStore = create<IAuthStore>()(
       addUser: (user: IUser) => set({ userProfile: user }),
       removeUser: () => set({ userProfile: null }),
       fetchSuggestedUser: async (userId) => {
-        const { data } = await axios.get<ISuggestedUser[]>(`${BASE_URL}/api/users?id=${userId}`);
+        const { data } = await axios.get<IUser[]>(`${BASE_URL}/api/users?id=${userId}`);
         set({ suggestedUsers: data });
       },
     }),

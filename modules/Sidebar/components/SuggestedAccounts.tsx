@@ -21,7 +21,7 @@ export const SuggestedAccounts = () => {
     <div className="border-gray-200 pb-4 xl:border-b-2">
       <p className="m-3 mt-4 hidden font-semibold text-gray-500 xl:block">Suggested accounts</p>
       <div>
-        {suggestedUsers?.slice(0, 6).map(({ postedBy }) => (
+        {suggestedUsers.map((postedBy) => (
           <Link href={`/profile/${postedBy._id}`} key={postedBy._id}>
             <div className="flex cursor-pointer items-center gap-3 rounded-md rounded p-2 font-semibold transition-colors duration-300 hover:bg-primary">
               <div className="h-8 w-8">
