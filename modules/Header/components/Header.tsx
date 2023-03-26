@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Search } from '@/modules/Header/components/Search';
+import { SearchInput } from '@/modules/Header/components/SearchInput';
 import { UserArea } from '@/modules/Header/components/UserArea';
 
 export const Header = () => {
@@ -11,7 +11,7 @@ export const Header = () => {
           <Image src="/logo.png" width={130} alt="Tak Tak logo" height={38} />
         </span>
       </Link>
-      <Search />
+      <SearchInput />
       <UserArea />
     </div>
   );

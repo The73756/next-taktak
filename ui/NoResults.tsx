@@ -1,9 +1,9 @@
 import { MdOutlineVideocamOff } from 'react-icons/md';
-import { BiCommentX } from 'react-icons/bi';
+import { BiCommentX, BiUserX } from 'react-icons/bi';
 
 interface INoResultsProps {
   text: string;
-  type: 'video' | 'comment';
+  type: 'video' | 'comment' | 'user';
   className?: string;
 }
 
@@ -17,6 +17,8 @@ export const NoResults = ({ text, type, className }: INoResultsProps) => {
     case 'comment':
       icon = <BiCommentX />;
       break;
+    case 'user':
+      icon = <BiUserX />;
   }
 
   return (

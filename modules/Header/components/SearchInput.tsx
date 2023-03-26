@@ -2,7 +2,7 @@ import { FormEvent, useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
 import { useRouter } from 'next/router';
 
-export const Search = () => {
+export const SearchInput = () => {
   const [searchValue, setSearchValue] = useState('');
   const router = useRouter();
 

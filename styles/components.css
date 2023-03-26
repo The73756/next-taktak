@@ -21,7 +21,11 @@
     @apply text-gray-500 hover:underline;
   }
 
+  .tab {
+    @apply mt-2 cursor-pointer border-b-2  border-transparent text-xl font-semibold transition-colors duration-300 hover:text-accent;
+  }
+
   .activeTab {
-    @apply text-accent;
+    @apply border-accent text-accent;
   }
 }

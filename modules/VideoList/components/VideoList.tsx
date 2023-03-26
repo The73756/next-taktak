@@ -1,4 +1,4 @@
-import { VideoCard } from '@/modules/VideoList/components/VideoCard';
+import { VideoCard } from '@/components/VideoCard';
 import { NoResults } from '@/ui/NoResults';
 import { IVideo } from '@/types/video';
 
