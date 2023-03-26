@@ -5,7 +5,7 @@ import { client } from '@/utils/client';
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case 'GET':
-      const data = await client.fetch(allPostsQuery());
+      const data = await client.fetch(allPostsQuery(0, 4));
       res.status(200).json(data);
       break;
     case 'POST':

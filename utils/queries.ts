@@ -1,5 +1,5 @@
-export const allPostsQuery = () => {
-  return `*[_type == "post"] | order(_createdAt desc){
+export const allPostsQuery = (offset: number, limit: number) => {
+  return `*[_type == "post"] | order(_createdAt desc) [${offset}...${limit}]{
     _id,
      caption,
        video{
