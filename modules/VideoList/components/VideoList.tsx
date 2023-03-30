@@ -1,11 +1,12 @@
 import { VideoCard } from '@/components/VideoCard';
 import { NoResults } from '@/ui/NoResults';
-import useVideoStore from '@/store/videoStore';
+import { IVideo } from '@/types/video';
 
-// Infinity scroll with Intersection Observer and React Query library and pagination by query params
+interface IVideoListProps {
+  videos: IVideo[];
+}
 
-export const VideoList = () => {
-  const { videos } = useVideoStore();
+export const VideoList = ({ videos }: IVideoListProps) => {
   return (
     <div className="videos flex h-full flex-col gap-10">
       {videos.length ? (

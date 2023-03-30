@@ -4,20 +4,22 @@ import { GetServerSidePropsContext } from 'next';
 import { ReactElement, useEffect } from 'react';
 import { NextPageWithLayout } from '@/pages/_app';
 import { IVideo } from '@/types/video';
-import { BASE_URL } from '@/utils';
 import { Layout } from '@/components/Layout';
-import { VideoList } from '@/modules/VideoList';
+import { BASE_URL } from '@/utils/constants';
 import useVideoStore from '@/store/videoStore';
+import { HomeVideoList } from '@/modules/VideoList/components/HomeVideoList';
 
-interface IHomeProps {
+interface IVideoResponse {
   videos: IVideo[];
+  total: number;
 }
 
-const Home: NextPageWithLayout<IHomeProps> = ({ videos }) => {
-  const { setVideos } = useVideoStore();
+const Home: NextPageWithLayout<IVideoResponse> = ({ videos, total }) => {
+  const { setVideos, setTotalVideos } = useVideoStore();
 
   useEffect(() => {
     setVideos(videos);
+    setTotalVideos(total);
   }, []);
 
   return (
@@ -29,7 +31,7 @@ const Home: NextPageWithLayout<IHomeProps> = ({ videos }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="h-full">
-        <VideoList />
+        <HomeVideoList />
       </main>
     </>
   );
@@ -41,19 +43,19 @@ Home.getLayout = function getLayout(page: ReactElement) {
 
 export async function getServerSideProps({ query }: GetServerSidePropsContext) {
   const { topic } = query;
-  let videos: IVideo[];
+  let response;
 
   if (topic) {
-    const { data } = await axios.get<IVideo[]>(`${BASE_URL}/api/discover/${topic}`);
-    videos = data;
+    const { data } = await axios.get<IVideoResponse>(`${BASE_URL}/api/discover/${topic}`);
+    response = data;
   } else {
-    const { data } = await axios.get<IVideo[]>(`${BASE_URL}/api/post`);
-    videos = data;
+    const { data } = await axios.get<IVideoResponse>(`${BASE_URL}/api/post`);
+    response = data;
   }
 
   return {
     props: {
-      videos,
+      ...response,
     },
   };
 }

@@ -4,7 +4,7 @@ import useAuthStore from '@/store/authStore';
 import { GoogleLogin, googleLogout } from '@react-oauth/google';
 import { IoMdAdd } from 'react-icons/io';
 import { AiOutlineLogout } from 'react-icons/ai';
-import { createOrGetUser } from '@/utils';
+import { createOrGetUser } from '@/utils/userAuth';
 
 export const UserArea = () => {
   const { userProfile, addUser, removeUser } = useAuthStore();

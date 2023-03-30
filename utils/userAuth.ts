@@ -1,8 +1,7 @@
 import jwtDecode from 'jwt-decode';
 import { CredentialResponse } from '@react-oauth/google';
+import { BASE_URL } from '@/utils/constants';
 import axios from 'axios';
-
-export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 interface IDecodedUserResponse {
   name: string;

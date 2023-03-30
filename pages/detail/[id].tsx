@@ -2,7 +2,7 @@ import axios from 'axios';
 import { GetServerSidePropsContext } from 'next';
 import { ReactElement } from 'react';
 import { NextPageWithLayout } from '@/pages/_app';
-import { BASE_URL } from '@/utils';
+import { BASE_URL } from '@/utils/constants';
 import { IVideo } from '@/types/video';
 import { Layout } from '@/components/Layout';
 import { DetailVideoInfo, DetailVideoPlayer } from '@/modules/DetailModule';

@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { IUser } from '@/types/user';
-import { BASE_URL } from '@/utils';
+import { BASE_URL } from '@/utils/constants';
 import axios from 'axios';
 
 interface IAuthStore {

@@ -1,31 +1,34 @@
 export const allPostsQuery = (offset: number, limit: number) => {
-  return `*[_type == "post"] | order(_createdAt desc) [${offset}...${limit}]{
-    _id,
-     caption,
-       video{
-        asset->{
+  return `
+  { "videos": *[_type == "post"] | order(_createdAt desc) [${offset}...${limit}]{
+      _id,
+       caption,
+         video{
+          asset->{
+            _id,
+            url
+          }
+        },
+        userId,
+        postedBy->{
           _id,
-          url
-        }
+          userName,
+          image
+        },
+      likes,
+      comments[] {
+        comment,
+        _key,
+        postedBy->{
+          _id,
+          userName,
+          givenName,
+          familyName,
+          image
+        },
       },
-      userId,
-      postedBy->{
-        _id,
-        userName,
-        image
-      },
-    likes,
-    comments[] {
-      comment,
-      _key,
-      postedBy->{
-        _id,
-        userName,
-        givenName,
-        familyName,
-        image
-      },
-    }
+    },
+    "total": count(*[_type == "post"])
   }`;
 };
 

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_URL } from '@/utils';
+import { BASE_URL } from '@/utils/constants';
 import { GetServerSidePropsContext } from 'next';
 import { NextPageWithLayout } from '@/pages/_app';
 import { useRouter } from 'next/router';

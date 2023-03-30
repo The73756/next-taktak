@@ -3,7 +3,7 @@ import { GetServerSidePropsContext } from 'next';
 import { NextPageWithLayout } from '@/pages/_app';
 import { ReactElement, useState } from 'react';
 import { IUserDetail } from '@/types/user';
-import { BASE_URL } from '@/utils';
+import { BASE_URL } from '@/utils/constants';
 import { Layout } from '@/components/Layout';
 import { VideoList } from '@/modules/VideoList';
 import { TabSwitcher } from '@/components/TabSwitcher';

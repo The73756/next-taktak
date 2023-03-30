@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_URL } from '@/utils';
+import { BASE_URL } from '@/utils/constants';
 import { SanityAssetDocument } from '@sanity/client';
 import { IUser } from '@/types/user';
 
