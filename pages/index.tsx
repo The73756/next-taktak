@@ -1,18 +1,25 @@
 import axios from 'axios';
 import Head from 'next/head';
 import { GetServerSidePropsContext } from 'next';
-import { ReactElement } from 'react';
+import { ReactElement, useEffect } from 'react';
 import { NextPageWithLayout } from '@/pages/_app';
 import { IVideo } from '@/types/video';
 import { BASE_URL } from '@/utils';
 import { Layout } from '@/components/Layout';
 import { VideoList } from '@/modules/VideoList';
+import useVideoStore from '@/store/videoStore';
 
 interface IHomeProps {
   videos: IVideo[];
 }
 
 const Home: NextPageWithLayout<IHomeProps> = ({ videos }) => {
+  const { setVideos } = useVideoStore();
+
+  useEffect(() => {
+    setVideos(videos);
+  }, []);
+
   return (
     <>
       <Head>
@@ -22,7 +29,7 @@ const Home: NextPageWithLayout<IHomeProps> = ({ videos }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="h-full">
-        <VideoList videos={videos} />
+        <VideoList />
       </main>
     </>
   );

@@ -5,7 +5,10 @@ import { client } from '@/utils/client';
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case 'GET':
-      const data = await client.fetch(allPostsQuery(0, 4));
+      const page = req.query.page || '1';
+      const offset = (Number(page) - 1) * 4;
+
+      const data = await client.fetch(allPostsQuery(offset, 4));
       res.status(200).json(data);
       break;
     case 'POST':
