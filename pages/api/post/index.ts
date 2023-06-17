@@ -10,8 +10,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const offset = (page - 1) * limit;
       const calculatedLimit = limit + offset;
 
-      const data = await client.fetch(allPostsQuery(offset, calculatedLimit));
-      res.status(200).json(data);
+      try {
+        const data = await client.fetch(allPostsQuery(offset, calculatedLimit));
+        res.status(200).json(data);
+      } catch (e) {
+        console.log(e);
+        res.status(500).json('Something went wrong');
+      }
+
       break;
     case 'POST':
       const document = req.body;

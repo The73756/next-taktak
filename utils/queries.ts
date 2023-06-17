@@ -190,36 +190,36 @@ export const userLikedPostsQuery = (userId: string | string[]) => {
   }`;
 };
 
-export const topicPostsQuery = (topic: string | string[]) => {
-  return `*[_type == "post" && topic match '${topic}*'] {
-    _id,
-     caption,
-       video{
-        asset->{
+export const topicPostsQuery = (topic: string | string[], offset: number, limit: number) => {
+  return `
+  { "videos": *[_type == "post" && topic match '${topic}*'] | order(_createdAt desc) [${offset}...${limit}]{
+      _id,
+       caption,
+         video{
+          asset->{
+            _id,
+            url
+          }
+        },
+        userId,
+        postedBy->{
           _id,
-          url
-        }
+          userName,
+          image
+        },
+      likes,
+      comments[] {
+        comment,
+        _key,
+        postedBy->{
+          _id,
+          userName,
+          givenName,
+          familyName,
+          image
+        },
       },
-      userId,
-    postedBy->{
-      _id,
-      userName,
-      givenName,
-      familyName,
-      image
     },
- likes,
-
-    comments[]{
-      comment,
-      _key,
-      postedBy->{
-      _id,
-      userName,
-      givenName,
-      familyName,
-      image
-    },
-    }
+    "total": count(*[_type == "post"])
   }`;
 };

@@ -20,7 +20,7 @@ const Home: NextPageWithLayout<IVideoResponse> = ({ videos, total }) => {
   useEffect(() => {
     setVideos(videos);
     setTotalVideos(total);
-  }, []);
+  }, [videos, total]);
 
   return (
     <>
@@ -46,6 +46,7 @@ export async function getServerSideProps({ query }: GetServerSidePropsContext) {
   let response;
 
   if (topic) {
+    console.log('topic', topic);
     const { data } = await axios.get<IVideoResponse>(`${BASE_URL}/api/discover/${topic}`);
     response = data;
   } else {

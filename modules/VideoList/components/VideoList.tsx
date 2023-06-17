@@ -9,7 +9,7 @@ interface IVideoListProps {
 export const VideoList = ({ videos }: IVideoListProps) => {
   return (
     <div className="videos flex h-full flex-col gap-10">
-      {videos.length ? (
+      {videos && videos.length ? (
         videos.map((video) => <VideoCard post={video} key={video._id} />)
       ) : (
         <NoResults text={'No videos'} type="video" className="-mt-32" />

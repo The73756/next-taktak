@@ -1,10 +1,13 @@
 import useVideoStore from '@/store/videoStore';
-import { VideoCard } from '@/components/VideoCard';
 import axios from 'axios';
 import { BASE_URL, VIDEO_LIMIT } from '@/utils/constants';
+import { VideoList } from '@/modules/VideoList';
 
 export const HomeVideoList = () => {
   const { videos, totalVideos, setVideos } = useVideoStore();
+
+  console.log(videos);
+
   let page = 1;
   const hasMore = page * VIDEO_LIMIT < totalVideos;
 
@@ -14,11 +17,5 @@ export const HomeVideoList = () => {
     setVideos([...videos, ...data.videos]);
   };
 
-  return (
-    <>
-      {videos.map((video) => (
-        <VideoCard post={video} key={video._id} />
-      ))}
-    </>
-  );
+  return <VideoList videos={videos} />;
 };
