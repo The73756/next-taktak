@@ -29,8 +29,8 @@ export const allPostsQuery = (offset: number, limit: number) => {
       },
     },
     "total": count(*[_type == "post"])
-  }`;
-};
+  }`
+}
 
 export const postDetailQuery = (postId: string | string[]) => {
   return `*[_type == "post" && _id == '${postId}']{
@@ -62,8 +62,8 @@ export const postDetailQuery = (postId: string | string[]) => {
         image
       },
     }
-  }`;
-};
+  }`
+}
 
 export const searchPostsQuery = (searchTerm: string | string[]) => {
   return `*[_type == "post" && caption match '${searchTerm}*' || topic match '${searchTerm}*'] {
@@ -95,8 +95,8 @@ likes,
       image
     },
     }
-  }`;
-};
+  }`
+}
 
 export const searchUsersQuery = (searchTerm: string | string[]) => {
   return `*[_type == "user" && userName match '${searchTerm}*'] {
@@ -105,12 +105,12 @@ export const searchUsersQuery = (searchTerm: string | string[]) => {
     givenName,
     familyName,
     image
-  }`;
-};
+  }`
+}
 
 export const singleUserQuery = (userId: string | string[]) => {
-  return `*[_type == "user" && _id == '${userId}']`;
-};
+  return `*[_type == "user" && _id == '${userId}']`
+}
 
 export const userSuggestedQuery = (userId: string | string[]) => {
   return `*[_type == "user" && _id != '${userId}'] [0...6]{
@@ -119,8 +119,8 @@ export const userSuggestedQuery = (userId: string | string[]) => {
     givenName,
     familyName,
     image
-  }`;
-};
+  }`
+}
 
 export const userCreatedPostsQuery = (userId: string | string[]) => {
   return `*[ _type == 'post' && userId == '${userId}'] | order(_createdAt desc){
@@ -153,8 +153,8 @@ export const userCreatedPostsQuery = (userId: string | string[]) => {
       image
     },
     }
-  }`;
-};
+  }`
+}
 
 export const userLikedPostsQuery = (userId: string | string[]) => {
   return `*[_type == 'post' && '${userId}' in likes[]._ref ] | order(_createdAt desc) {
@@ -187,8 +187,8 @@ export const userLikedPostsQuery = (userId: string | string[]) => {
       image
     },
     }
-  }`;
-};
+  }`
+}
 
 export const topicPostsQuery = (topic: string | string[], offset: number, limit: number) => {
   return `
@@ -221,5 +221,5 @@ export const topicPostsQuery = (topic: string | string[], offset: number, limit:
       },
     },
     "total": count(*[_type == "post"])
-  }`;
-};
+  }`
+}

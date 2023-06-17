@@ -1,9 +1,9 @@
-import { FC, ReactNode } from 'react';
-import { Header } from '@/modules/header';
-import { Sidebar } from '@/modules/sidebar';
+import { FC, ReactNode } from 'react'
+import { Header } from '@/modules/header'
+import { Sidebar } from '@/modules/sidebar'
 
 interface ILayoutProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
 export const Layout: FC<ILayoutProps> = ({ children }) => {
@@ -19,5 +19,5 @@ export const Layout: FC<ILayoutProps> = ({ children }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

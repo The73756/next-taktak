@@ -1,18 +1,18 @@
-import { FormEvent, useState } from 'react';
-import { BiSearch } from 'react-icons/bi';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/router'
+import { FormEvent, useState } from 'react'
+import { BiSearch } from 'react-icons/bi'
 
 export const SearchInput = () => {
-  const [searchValue, setSearchValue] = useState('');
-  const router = useRouter();
+  const [searchValue, setSearchValue] = useState('')
+  const router = useRouter()
 
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
 
     if (searchValue) {
-      void router.push(`/search/${searchValue}`);
+      void router.push(`/search/${searchValue}`)
     }
-  };
+  }
 
   return (
     <div className="relative hidden md:block">
@@ -25,10 +25,11 @@ export const SearchInput = () => {
         />
         <button
           type="submit"
-          className="absolute right-6 top-4 border-l-2 border-gray-300 pl-4 text-2xl text-gray-400 transition-colors duration-300 hover:text-gray-800 md:right-5">
+          className="absolute right-6 top-4 border-l-2 border-gray-300 pl-4 text-2xl text-gray-400 transition-colors duration-300 hover:text-gray-800 md:right-5"
+        >
           <BiSearch />
         </button>
       </form>
     </div>
-  );
-};
+  )
+}

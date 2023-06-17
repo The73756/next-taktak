@@ -1,6 +1,6 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { SearchInput, UserArea } from '@/modules/header';
+import Image from 'next/image'
+import Link from 'next/link'
+import { SearchInput, UserArea } from '@/modules/header'
 
 export const Header = () => {
   return (
@@ -13,5 +13,5 @@ export const Header = () => {
       <SearchInput />
       <UserArea />
     </div>
-  );
-};
+  )
+}

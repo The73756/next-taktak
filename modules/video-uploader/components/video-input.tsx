@@ -1,46 +1,47 @@
-import { ChangeEvent, useState } from 'react';
-import { SanityAssetDocument } from '@sanity/client';
-import { FaCloudUploadAlt } from 'react-icons/fa';
-import { fileTypes } from '@/modules/video-uploader/constants/file-types';
-import { uploadVideo } from '@/modules/video-uploader/http/upload-video';
+import { SanityAssetDocument } from '@sanity/client'
+import { ChangeEvent, useState } from 'react'
+import { FaCloudUploadAlt } from 'react-icons/fa'
+import { fileTypes } from '@/modules/video-uploader/constants/file-types'
+import { uploadVideo } from '@/modules/video-uploader/http/upload-video'
 
 interface IVideoUploaderProps {
-  videoAsset: SanityAssetDocument | null;
-  setVideoAsset: (videoAsset: SanityAssetDocument | null) => void;
+  videoAsset: SanityAssetDocument | null
+  setVideoAsset: (videoAsset: SanityAssetDocument | null) => void
 }
 
 export const VideoInput = ({ videoAsset, setVideoAsset }: IVideoUploaderProps) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [wrongFileType, setWrongFileType] = useState(false);
-  console.log(videoAsset);
+  const [isLoading, setIsLoading] = useState(false)
+  const [wrongFileType, setWrongFileType] = useState(false)
+  console.log(videoAsset)
 
   const handleUpload = async (e: ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) return;
+    if (!e.target.files) return
 
-    const selectedFile = e.target.files[0];
+    const selectedFile = e.target.files[0]
 
     if (!fileTypes.includes(selectedFile.type)) {
-      setIsLoading(false);
-      setWrongFileType(true);
-      return;
+      setIsLoading(false)
+      setWrongFileType(true)
+      return
     }
 
     try {
-      setIsLoading(true);
-      const data = await uploadVideo(selectedFile);
-      setVideoAsset(data);
+      setIsLoading(true)
+      const data = await uploadVideo(selectedFile)
+      setVideoAsset(data)
     } catch (error) {
-      console.log(error);
+      console.log(error)
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
   return (
     <div
       className={`hover: mt-10 flex h-[460px] w-[260px] cursor-pointer flex-col items-center justify-center rounded-xl border-4 border-dashed border-gray-200 ${
         videoAsset ? '' : 'p-10'
-      } bg-gray-100 transition-colors duration-300 hover:border-red-300`}>
+      } bg-gray-100 transition-colors duration-300 hover:border-red-300`}
+    >
       {isLoading ? (
         <p>Uploading...</p>
       ) : (
@@ -50,7 +51,8 @@ export const VideoInput = ({ videoAsset, setVideoAsset }: IVideoUploaderProps) =
               src={videoAsset.url}
               loop
               controls
-              className="h-full w-full rounded-xl bg-black"></video>
+              className="h-full w-full rounded-xl bg-black"
+            />
           ) : (
             <label className="cursor-pointer ">
               <div className=" flex h-full flex-col items-center justify-center">
@@ -79,5 +81,5 @@ export const VideoInput = ({ videoAsset, setVideoAsset }: IVideoUploaderProps) =
         </p>
       )}
     </div>
-  );
-};
+  )
+}

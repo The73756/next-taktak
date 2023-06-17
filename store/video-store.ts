@@ -1,13 +1,13 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
-import { IVideo } from '@/types/video';
+import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
+import { IVideo } from '@/types/video'
 
 interface IAuthStore {
-  videos: IVideo[] | [];
-  totalVideos: number;
-  setVideos: (videos: IVideo[]) => void;
-  addVideos: (newVideos: IVideo[]) => void;
-  setTotalVideos: (total: number) => void;
+  videos: IVideo[] | []
+  totalVideos: number
+  setVideos: (videos: IVideo[]) => void
+  addVideos: (newVideos: IVideo[]) => void
+  setTotalVideos: (total: number) => void
 }
 
 const useVideoStore = create<IAuthStore>()(
@@ -24,8 +24,8 @@ const useVideoStore = create<IAuthStore>()(
     }),
     {
       name: 'video-store',
-    },
-  ),
-);
+    }
+  )
+)
 
-export default useVideoStore;
+export default useVideoStore

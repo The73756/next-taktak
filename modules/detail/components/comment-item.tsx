@@ -1,9 +1,9 @@
-import { IComment } from '@/types/comment';
-import Link from 'next/link';
-import Image from 'next/image';
-import { GoVerified } from 'react-icons/go';
+import Image from 'next/image'
+import Link from 'next/link'
+import { GoVerified } from 'react-icons/go'
+import { IComment } from '@/types/comment'
 
-interface ICommentItemProps extends Omit<IComment, '_key'> {}
+type ICommentItemProps = Omit<IComment, '_key'>
 
 export const CommentItem = ({ comment, postedBy }: ICommentItemProps) => {
   return (
@@ -25,5 +25,5 @@ export const CommentItem = ({ comment, postedBy }: ICommentItemProps) => {
         <p className="text-[18px]">{comment}</p>
       </div>
     </div>
-  );
-};
+  )
+}

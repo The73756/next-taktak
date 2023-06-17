@@ -1,26 +1,26 @@
-import axios from 'axios';
-import Head from 'next/head';
-import { GetServerSidePropsContext } from 'next';
-import { ReactElement, useEffect } from 'react';
-import { NextPageWithLayout } from '@/pages/_app';
-import { IVideo } from '@/types/video';
-import { Layout } from '@/components/layout';
-import { BASE_URL } from '@/utils/constants';
-import useVideoStore from '@/store/video-store';
-import { HomeVideoList } from '@/modules/video-list';
+import axios from 'axios'
+import { GetServerSidePropsContext } from 'next'
+import Head from 'next/head'
+import { ReactElement, useEffect } from 'react'
+import { Layout } from '@/components/layout'
+import { HomeVideoList } from '@/modules/video-list'
+import { NextPageWithLayout } from '@/pages/_app'
+import useVideoStore from '@/store/video-store'
+import { IVideo } from '@/types/video'
+import { BASE_URL } from '@/utils/constants'
 
 interface IVideoResponse {
-  videos: IVideo[];
-  total: number;
+  videos: IVideo[]
+  total: number
 }
 
 const Home: NextPageWithLayout<IVideoResponse> = ({ videos, total }) => {
-  const { setVideos, setTotalVideos } = useVideoStore();
+  const { setVideos, setTotalVideos } = useVideoStore()
 
   useEffect(() => {
-    setVideos(videos);
-    setTotalVideos(total);
-  }, [videos, total]);
+    setVideos(videos)
+    setTotalVideos(total)
+  }, [videos, total])
 
   return (
     <>
@@ -34,31 +34,31 @@ const Home: NextPageWithLayout<IVideoResponse> = ({ videos, total }) => {
         <HomeVideoList />
       </main>
     </>
-  );
-};
+  )
+}
 
 Home.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
-};
+  return <Layout>{page}</Layout>
+}
 
 export async function getServerSideProps({ query }: GetServerSidePropsContext) {
-  const { topic } = query;
-  let response;
+  const { topic } = query
+  let response
 
   if (topic) {
-    console.log('topic', topic);
-    const { data } = await axios.get<IVideoResponse>(`${BASE_URL}/api/discover/${topic}`);
-    response = data;
+    console.log('topic', topic)
+    const { data } = await axios.get<IVideoResponse>(`${BASE_URL}/api/discover/${topic}`)
+    response = data
   } else {
-    const { data } = await axios.get<IVideoResponse>(`${BASE_URL}/api/post`);
-    response = data;
+    const { data } = await axios.get<IVideoResponse>(`${BASE_URL}/api/post`)
+    response = data
   }
 
   return {
     props: {
       ...response,
     },
-  };
+  }
 }
 
-export default Home;
+export default Home

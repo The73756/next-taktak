@@ -1,19 +1,19 @@
-import { VideoCard } from '@/components/video-card';
-import { NoResults } from '@/ui/no-results';
-import { IVideo } from '@/types/video';
+import { VideoCard } from '@/components/video-card'
+import { IVideo } from '@/types/video'
+import { NoResults } from '@/ui/no-results'
 
 interface IVideoListProps {
-  videos: IVideo[];
+  videos: IVideo[]
 }
 
 export const VideoList = ({ videos }: IVideoListProps) => {
   return (
     <div className="videos flex h-full flex-col gap-10">
-      {videos && videos.length ? (
-        videos.map((video) => <VideoCard post={video} key={video._id} />)
+      {videos.length > 0 ? (
+        videos.map((video) => <VideoCard key={video._id} post={video} />)
       ) : (
-        <NoResults text={'No videos'} type="video" className="-mt-32" />
+        <NoResults text="No videos" type="video" className="-mt-32" />
       )}
     </div>
-  );
-};
+  )
+}

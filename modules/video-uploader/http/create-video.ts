@@ -1,13 +1,13 @@
-import axios from 'axios';
-import { BASE_URL } from '@/utils/constants';
-import { SanityAssetDocument } from '@sanity/client';
-import { IUser } from '@/types/user';
+import { SanityAssetDocument } from '@sanity/client'
+import axios from 'axios'
+import { IUser } from '@/types/user'
+import { BASE_URL } from '@/utils/constants'
 
 interface ICreateVideoProps {
-  caption: string;
-  category: string;
-  videoAsset: SanityAssetDocument;
-  userProfile: IUser;
+  caption: string
+  category: string
+  videoAsset: SanityAssetDocument
+  userProfile: IUser
 }
 
 export const createVideo = async ({
@@ -32,7 +32,7 @@ export const createVideo = async ({
       _ref: userProfile._id,
     },
     topic: category,
-  };
+  }
 
-  await axios.post(`${BASE_URL}/api/post`, document);
-};
+  await axios.post(`${BASE_URL}/api/post`, document)
+}

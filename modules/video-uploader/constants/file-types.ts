@@ -1,1 +1,1 @@
-export const fileTypes = ['video/mp4', 'video/webm', 'video/ogg'];
+export const fileTypes = ['video/mp4', 'video/webm', 'video/ogg']

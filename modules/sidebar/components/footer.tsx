@@ -12,5 +12,5 @@ export const Footer = () => {
         </a>
       </p>
     </footer>
-  );
-};
+  )
+}

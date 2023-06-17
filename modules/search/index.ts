@@ -1,3 +1,3 @@
-export { SearchVideoList } from './components/search-video-list';
-export { SearchUserList } from './components/search-user-list';
-export { SearchModule } from './components/search-module';
+export { SearchModule } from './components/search-module'
+export { SearchUserList } from './components/search-user-list'
+export { SearchVideoList } from './components/search-video-list'

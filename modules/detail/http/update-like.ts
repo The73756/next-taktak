@@ -1,11 +1,11 @@
-import axios from 'axios';
-import { BASE_URL } from '@/utils/constants';
-import { ILike, IVideo } from '@/types/video';
+import axios from 'axios'
+import { ILike, IVideo } from '@/types/video'
+import { BASE_URL } from '@/utils/constants'
 
 interface IUpdateLikeProps {
-  userId: string;
-  postId: string;
-  like: boolean;
+  userId: string
+  postId: string
+  like: boolean
 }
 
 export const updateLike = async ({
@@ -17,7 +17,7 @@ export const updateLike = async ({
     userId,
     postId,
     like,
-  });
+  })
 
-  return data.likes;
-};
+  return data.likes
+}

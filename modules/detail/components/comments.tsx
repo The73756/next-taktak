@@ -1,41 +1,41 @@
-import { FormEvent, useState } from 'react';
-import { IComment } from '@/types/comment';
-import useAuthStore from '@/store/auth-store';
-import { NoResults } from '@/ui/no-results';
-import { CommentItem } from '@/modules/detail';
+import { FormEvent, useState } from 'react'
+import { CommentItem } from '@/modules/detail'
+import useAuthStore from '@/store/auth-store'
+import { IComment } from '@/types/comment'
+import { NoResults } from '@/ui/no-results'
 
 interface ICommentsProps {
-  comments: IComment[];
-  addComment: (comment: string) => void;
+  comments: IComment[]
+  addComment: (comment: string) => void
 }
 
 export const Comments = ({ comments, addComment }: ICommentsProps) => {
-  const [isPostingComment, setIsPostingComment] = useState(false);
-  const [commentText, setCommentText] = useState('');
-  const { userProfile } = useAuthStore();
+  const [isPostingComment, setIsPostingComment] = useState(false)
+  const [commentText, setCommentText] = useState('')
+  const { userProfile } = useAuthStore()
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
-      setIsPostingComment(true);
+      setIsPostingComment(true)
 
       if (userProfile && commentText) {
-        await addComment(commentText);
+        await addComment(commentText)
       }
 
-      setCommentText('');
+      setCommentText('')
     } catch (error) {
-      console.log(error);
+      console.log(error)
     } finally {
-      setIsPostingComment(false);
+      setIsPostingComment(false)
     }
-  };
+  }
 
   return (
     <div className="flex flex-1 flex-col gap-5">
       <div className="max-h-[450px] flex-1 border-y-2 border-gray-200 bg-gray-100 px-10 pt-4 lg:pb-0">
         <div className="flex h-full flex-col gap-2 overflow-scroll">
-          {comments.length ? (
+          {comments.length > 0 ? (
             comments.map(({ comment, postedBy, _key }) => (
               <CommentItem key={_key} comment={comment} postedBy={postedBy} />
             ))
@@ -61,5 +61,5 @@ export const Comments = ({ comments, addComment }: ICommentsProps) => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}

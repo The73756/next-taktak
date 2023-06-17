@@ -1,17 +1,18 @@
-import { useState } from 'react';
-import { AiFillHome, AiOutlineMenu } from 'react-icons/ai';
-import { ImCancelCircle } from 'react-icons/im';
-import Link from 'next/link';
-import { Discover, Footer, SuggestedAccounts } from '@/modules/sidebar';
+import Link from 'next/link'
+import { useState } from 'react'
+import { AiFillHome, AiOutlineMenu } from 'react-icons/ai'
+import { ImCancelCircle } from 'react-icons/im'
+import { Discover, Footer, SuggestedAccounts } from '@/modules/sidebar'
 
 export const Sidebar = () => {
-  const [showSidebar, setShowSidebar] = useState(true);
+  const [showSidebar, setShowSidebar] = useState(true)
 
   return (
     <div>
       <button
         className="m-2 ml-4 mt-3 block text-xl xl:hidden"
-        onClick={() => setShowSidebar((prevState) => !prevState)}>
+        onClick={() => setShowSidebar((prevState) => !prevState)}
+      >
         {showSidebar ? <ImCancelCircle /> : <AiOutlineMenu />}
       </button>
       {showSidebar && (
@@ -31,5 +32,5 @@ export const Sidebar = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}

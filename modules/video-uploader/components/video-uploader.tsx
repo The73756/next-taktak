@@ -1,31 +1,31 @@
-import { useRouter } from 'next/router';
-import { useState } from 'react';
-import { SanityAssetDocument } from '@sanity/client';
-import { topics } from '@/utils/topics';
-import useAuthStore from '@/store/auth-store';
-import { VideoInput } from './video-input';
-import { VideoCaptionBlock } from './video-caption-block';
-import { createVideo } from '../http/create-video';
+import { SanityAssetDocument } from '@sanity/client'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import useAuthStore from '@/store/auth-store'
+import { topics } from '@/utils/topics'
+import { createVideo } from '../http/create-video'
+import { VideoCaptionBlock } from './video-caption-block'
+import { VideoInput } from './video-input'
 
 export const VideoUploader = () => {
-  const router = useRouter();
-  const { userProfile } = useAuthStore();
-  const [videoAsset, setVideoAsset] = useState<SanityAssetDocument | null>(null);
-  const [caption, setCaption] = useState('');
-  const [category, setCategory] = useState(topics[0].name);
+  const router = useRouter()
+  const { userProfile } = useAuthStore()
+  const [videoAsset, setVideoAsset] = useState<SanityAssetDocument | null>(null)
+  const [caption, setCaption] = useState('')
+  const [category, setCategory] = useState(topics[0].name)
 
   const handlePost = async () => {
     if (caption && category && videoAsset?._id && userProfile) {
       try {
-        await createVideo({ caption, category, videoAsset, userProfile });
-      } catch (e) {
-        console.log(e);
+        await createVideo({ caption, category, videoAsset, userProfile })
+      } catch (error) {
+        console.log(error)
       }
 
       // TODO: Add a success message + loader
-      void router.push('/');
+      void router.push('/')
     }
-  };
+  }
 
   return (
     <>
@@ -42,5 +42,5 @@ export const VideoUploader = () => {
         handlePost={handlePost}
       />
     </>
-  );
-};
+  )
+}

@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint \"{components,http,modules,store,ui,utils,pages}/**/*.{js,ts,jsx,tsx}\"",
+    "prettier": "prettier --write \"{components,http,modules,store,ui,utils,pages}/**/*.{js,ts,jsx,tsx}\"",
+    "lint:fix": "eslint \"{components,http,modules,store,ui,utils,pages}/**/*.{js,ts,jsx,tsx}\" --fix"
   },
   "dependencies": {
     "@next/font": "13.1.6",
@@ -27,9 +29,11 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
+    "eslint": "^8.43.0",
+    "eslint-kit": "^9.3.0",
     "postcss": "^8.4.21",
-    "prettier": "^2.8.4",
     "prettier-plugin-tailwindcss": "^0.2.2",
-    "tailwindcss": "^3.2.7"
+    "tailwindcss": "^3.2.7",
+    "prettier": "^2.8.8"
   }
 }

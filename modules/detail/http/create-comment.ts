@@ -1,17 +1,17 @@
-import axios from 'axios';
-import { BASE_URL } from '@/utils/constants';
-import { IUser } from '@/types/user';
-import { IComment } from '@/types/comment';
+import axios from 'axios'
+import { IComment } from '@/types/comment'
+import { IUser } from '@/types/user'
+import { BASE_URL } from '@/utils/constants'
 
 interface ICreateComment {
-  comment: string;
-  postId: string;
-  userProfile: IUser;
+  comment: string
+  postId: string
+  userProfile: IUser
 }
 
 export const createComment = async ({ comment, postId, userProfile }: ICreateComment) => {
-  return await axios.put<IComment>(`${BASE_URL}/api/post/${postId}`, {
+  return axios.put<IComment>(`${BASE_URL}/api/post/${postId}`, {
     userProfile,
     comment,
-  });
-};
+  })
+}

@@ -1,15 +1,15 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { IVideo } from '@/types/video';
-import { GoVerified } from 'react-icons/go';
-import { VideoPlayer } from '@/components/video-player';
+import Image from 'next/image'
+import Link from 'next/link'
+import { GoVerified } from 'react-icons/go'
+import { VideoPlayer } from '@/components/video-player'
+import { IVideo } from '@/types/video'
 
 interface IVideoCardProps {
-  post: IVideo;
+  post: IVideo
 }
 
 export const VideoCard = ({ post }: IVideoCardProps) => {
-  const { postedBy, video } = post;
+  const { postedBy, video } = post
 
   return (
     <article className="flex flex-col border-b-2 border-gray-200 pb-6">
@@ -30,5 +30,5 @@ export const VideoCard = ({ post }: IVideoCardProps) => {
       </Link>
       <VideoPlayer videoUrl={video.asset.url} postId={post._id} />
     </article>
-  );
-};
+  )
+}

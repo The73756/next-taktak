@@ -1,33 +1,34 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { postDetailQuery } from '@/utils/queries';
-import { client } from '@/utils/client';
-import { uuid } from 'uuidv4';
+/* eslint-disable no-case-declarations */
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { uuid } from 'uuidv4'
+import { client } from '@/utils/client'
+import { postDetailQuery } from '@/utils/queries'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case 'GET':
-      const { id } = req.query;
+      const { id } = req.query
       if (!id) {
-        res.status(400).json({ message: 'Missing id' });
-        return;
+        res.status(400).json({ message: 'Missing id' })
+        return
       }
 
       try {
-        const data = await client.fetch(postDetailQuery(id));
-        res.status(200).json(data[0]);
-      } catch (e) {
-        console.log(e);
-        res.status(500).json({ message: 'Something went wrong' });
+        const data = await client.fetch(postDetailQuery(id))
+        res.status(200).json(data[0])
+      } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: 'Something went wrong' })
       }
-      break;
+      break
     case 'PUT':
-      const { comment, userProfile } = req.body;
-      const postId = req.query.id;
-      const _key = uuid();
+      const { comment, userProfile } = req.body
+      const postId = req.query.id
+      const _key = uuid()
 
       try {
         await client
-          .patch(postId + '')
+          .patch(String(postId))
           .setIfMissing({ comments: [] })
           .insert('after', 'comments[-1]', [
             {
@@ -36,13 +37,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               postedBy: { _type: 'postedBy', _ref: userProfile._id },
             },
           ])
-          .commit();
+          .commit()
 
-        res.status(200).json({ comment, postedBy: userProfile, _key });
-      } catch (e) {
-        console.log(e);
-        res.status(500).json({ message: 'Something went wrong' });
+        res.status(200).json({ comment, postedBy: userProfile, _key })
+      } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: 'Something went wrong' })
       }
-      break;
+      break
+
+    default: {
+      break
+    }
   }
 }

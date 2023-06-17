@@ -1,29 +1,29 @@
-import Link from 'next/link';
-import { useRef, useState } from 'react';
-import { BsFillPauseFill, BsFillPlayFill } from 'react-icons/bs';
-import { HiVolumeOff, HiVolumeUp } from 'react-icons/hi';
+import Link from 'next/link'
+import { useRef, useState } from 'react'
+import { BsFillPauseFill, BsFillPlayFill } from 'react-icons/bs'
+import { HiVolumeOff, HiVolumeUp } from 'react-icons/hi'
 
 interface IVideoPlayerProps {
-  postId: string;
-  videoUrl: string;
+  postId: string
+  videoUrl: string
 }
 
 export const VideoPlayer = ({ postId, videoUrl }: IVideoPlayerProps) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isVideoMuted, setIsVideoMuted] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [isVideoMuted, setIsVideoMuted] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   const handleVideoClick = () => {
-    if (!videoRef.current) return;
+    if (!videoRef.current) return
 
     if (isPlaying) {
-      videoRef.current.pause();
-      setIsPlaying(false);
+      videoRef.current.pause()
+      setIsPlaying(false)
     } else {
-      void videoRef.current.play();
-      setIsPlaying(true);
+      void videoRef.current.play()
+      setIsPlaying(true)
     }
-  };
+  }
 
   return (
     <div className="group relative gap-4 lg:ml-20">
@@ -43,10 +43,11 @@ export const VideoPlayer = ({ postId, videoUrl }: IVideoPlayerProps) => {
 
         <button
           className="videoControlBtn"
-          onClick={() => setIsVideoMuted((prevState) => !prevState)}>
+          onClick={() => setIsVideoMuted((prevState) => !prevState)}
+        >
           {isVideoMuted ? <HiVolumeOff /> : <HiVolumeUp />}
         </button>
       </div>
     </div>
-  );
-};
+  )
+}

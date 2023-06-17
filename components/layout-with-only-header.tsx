@@ -1,8 +1,8 @@
-import { FC, ReactNode } from 'react';
-import { Header } from '@/modules/header';
+import { FC, ReactNode } from 'react'
+import { Header } from '@/modules/header'
 
 interface ILayoutWithOnlyHeaderProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
 export const LayoutWithOnlyHeader: FC<ILayoutWithOnlyHeaderProps> = ({ children }) => {
@@ -11,5 +11,5 @@ export const LayoutWithOnlyHeader: FC<ILayoutWithOnlyHeaderProps> = ({ children 
       <Header />
       {children}
     </div>
-  );
-};
+  )
+}

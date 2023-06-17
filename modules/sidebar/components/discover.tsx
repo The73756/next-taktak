@@ -1,20 +1,20 @@
-import { useState } from 'react';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
-import { topics } from '@/utils/topics';
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { topics } from '@/utils/topics'
 
 export const Discover = () => {
-  const router = useRouter();
-  const { topic } = router.query;
-  const [activeTopic, setActiveTopic] = useState(topic);
+  const router = useRouter()
+  const { topic } = router.query
+  const [activeTopic, setActiveTopic] = useState(topic)
 
   const handleTopicClick = (topic: string) => {
     if (activeTopic === topic) {
-      setActiveTopic('');
+      setActiveTopic('')
     } else {
-      setActiveTopic(topic);
+      setActiveTopic(topic)
     }
-  };
+  }
 
   return (
     <div className="pb-6 xl:border-b-2 xl:border-gray-200">
@@ -22,15 +22,16 @@ export const Discover = () => {
       <div className="flex flex-wrap justify-center gap-3">
         {topics.map((item) => (
           <Link
+            key={item.name}
             href={activeTopic === item.name ? '/' : `/?topic=${item.name}`}
             onClick={() => handleTopicClick(item.name)}
-            key={item.name}
-            className={activeTopic === item.name ? 'activeTopic' : 'topic'}>
+            className={activeTopic === item.name ? 'activeTopic' : 'topic'}
+          >
             <span className="text-xl font-bold">{item.icon}</span>
             <span className="hidden font-medium capitalize xl:block">{item.name}</span>
           </Link>
         ))}
       </div>
     </div>
-  );
-};
+  )
+}

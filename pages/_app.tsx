@@ -1,31 +1,31 @@
-import '@/styles/globals.css';
-import type { AppProps } from 'next/app';
-import type { NextPage } from 'next';
-import type { ReactElement, ReactNode } from 'react';
-import { useEffect, useState } from 'react';
-import { GoogleOAuthProvider } from '@react-oauth/google';
+import '@/styles/globals.css'
+import { GoogleOAuthProvider } from '@react-oauth/google'
+import type { NextPage } from 'next'
+import type { AppProps } from 'next/app'
+import type { ReactElement, ReactNode } from 'react'
+import { useEffect, useState } from 'react'
 
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: ReactElement) => ReactNode;
-};
+export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
 
 type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout;
-};
+  Component: NextPageWithLayout
+}
 
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
-  const [isSSR, setIsSSR] = useState(true);
-  const getLayout = Component.getLayout ?? ((page) => page);
+  const [isSSR, setIsSSR] = useState(true)
+  const getLayout = Component.getLayout ?? ((page) => page)
 
   useEffect(() => {
-    setIsSSR(false);
-  }, []);
+    setIsSSR(false)
+  }, [])
 
-  if (isSSR) return null;
+  if (isSSR) return null
 
   return (
-    <GoogleOAuthProvider clientId={'' + process.env.NEXT_PUBLIC_GOOGLE_API_TOKEN}>
+    <GoogleOAuthProvider clientId={String(process.env.NEXT_PUBLIC_GOOGLE_API_TOKEN)}>
       {getLayout(<Component {...pageProps} />)}
     </GoogleOAuthProvider>
-  );
+  )
 }

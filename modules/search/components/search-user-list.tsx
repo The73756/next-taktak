@@ -1,20 +1,20 @@
-import { IUser } from '@/types/user';
-import Link from 'next/link';
-import Image from 'next/image';
-import { GoVerified } from 'react-icons/go';
-import { NoResults } from '@/ui/no-results';
+import Image from 'next/image'
+import Link from 'next/link'
+import { GoVerified } from 'react-icons/go'
+import { IUser } from '@/types/user'
+import { NoResults } from '@/ui/no-results'
 
 interface ISearchUserListProps {
-  users: IUser[];
-  searchTerm: string;
+  users: IUser[]
+  searchTerm: string
 }
 
 export const SearchUserList = ({ users, searchTerm }: ISearchUserListProps) => {
   return (
     <div className="md:mt-16">
       {users.length > 0 ? (
-        users.map((user: IUser, idx: number) => (
-          <Link key={idx} href={`/profile/${user._id}`}>
+        users.map((user: IUser) => (
+          <Link key={user._id} href={`/profile/${user._id}`}>
             <div className=" flex cursor-pointer gap-3 rounded border-b-2 border-gray-200 p-2 font-semibold">
               <div>
                 <Image
@@ -40,5 +40,5 @@ export const SearchUserList = ({ users, searchTerm }: ISearchUserListProps) => {
         <NoResults text={`No Account Results for "${searchTerm}"`} type="user" />
       )}
     </div>
-  );
-};
+  )
+}

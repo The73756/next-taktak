@@ -1,20 +1,20 @@
-import axios from 'axios';
-import { GetServerSidePropsContext } from 'next';
-import { NextPageWithLayout } from '@/pages/_app';
-import { ReactElement, useState } from 'react';
-import { IUserDetail } from '@/types/user';
-import { BASE_URL } from '@/utils/constants';
-import { Layout } from '@/components/layout';
-import { TabSwitcher } from '@/components/tab-switcher';
-import { UserInfo } from '@/ui/user-info';
-import { VideoList } from '@/modules/video-list';
+import axios from 'axios'
+import { GetServerSidePropsContext } from 'next'
+import { ReactElement, useState } from 'react'
+import { Layout } from '@/components/layout'
+import { TabSwitcher } from '@/components/tab-switcher'
+import { VideoList } from '@/modules/video-list'
+import { NextPageWithLayout } from '@/pages/_app'
+import { IUserDetail } from '@/types/user'
+import { UserInfo } from '@/ui/user-info'
+import { BASE_URL } from '@/utils/constants'
 
 interface IProfileProps {
-  detail: IUserDetail;
+  detail: IUserDetail
 }
 
 const Profile: NextPageWithLayout<IProfileProps> = ({ detail }) => {
-  const { user, userLikes, userVideos } = detail;
+  const { user, userLikes, userVideos } = detail
 
   const tabs = [
     {
@@ -25,9 +25,9 @@ const Profile: NextPageWithLayout<IProfileProps> = ({ detail }) => {
       label: 'Liked',
       component: <VideoList videos={userLikes} />,
     },
-  ];
+  ]
 
-  const [activeTab, setActiveTab] = useState(tabs[0]);
+  const [activeTab, setActiveTab] = useState(tabs[0])
 
   return (
     <div className="w-full">
@@ -39,21 +39,21 @@ const Profile: NextPageWithLayout<IProfileProps> = ({ detail }) => {
       </div>
       <div className="flex flex-wrap gap-6 md:justify-start">{activeTab.component}</div>
     </div>
-  );
-};
+  )
+}
 
 Profile.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
-};
+  return <Layout>{page}</Layout>
+}
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const { data } = await axios.get<IUserDetail>(`${BASE_URL}/api/profile/${context.query.id}`);
+  const { data } = await axios.get<IUserDetail>(`${BASE_URL}/api/profile/${context.query.id}`)
 
   return {
     props: {
       detail: data,
     },
-  };
+  }
 }
 
-export default Profile;
+export default Profile

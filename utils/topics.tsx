@@ -1,6 +1,6 @@
-import { BsCode, BsEmojiSunglasses } from 'react-icons/bs';
-import { GiCakeSlice, GiGalaxy, GiLipstick } from 'react-icons/gi';
-import { FaPaw, FaMedal, FaGamepad } from 'react-icons/fa';
+import { BsCode, BsEmojiSunglasses } from 'react-icons/bs'
+import { FaGamepad, FaMedal, FaPaw } from 'react-icons/fa'
+import { GiCakeSlice, GiGalaxy, GiLipstick } from 'react-icons/gi'
 
 export const topics = [
   {
@@ -35,4 +35,4 @@ export const topics = [
     name: 'sports',
     icon: <FaMedal />,
   },
-];
+]

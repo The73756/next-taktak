@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import { IUser } from '@/types/user';
-import { IVideo } from '@/types/video';
-import { TabSwitcher } from '@/components/tab-switcher';
-import { SearchUserList, SearchVideoList } from '@/modules/search-module';
+import { useState } from 'react'
+import { TabSwitcher } from '@/components/tab-switcher'
+import { SearchUserList, SearchVideoList } from '@/modules/search'
+import { IUser } from '@/types/user'
+import { IVideo } from '@/types/video'
 
 interface ISearchModuleProps {
-  videos: IVideo[];
-  users: IUser[];
-  searchTerm: string;
+  videos: IVideo[]
+  users: IUser[]
+  searchTerm: string
 }
 
 export const SearchModule = ({ users, videos, searchTerm }: ISearchModuleProps) => {
@@ -20,9 +20,9 @@ export const SearchModule = ({ users, videos, searchTerm }: ISearchModuleProps) 
       label: 'Users',
       component: <SearchUserList users={users} searchTerm={searchTerm} />,
     },
-  ];
+  ]
 
-  const [activeTab, setActiveTab] = useState(tabs[0]);
+  const [activeTab, setActiveTab] = useState(tabs[0])
 
   return (
     <>
@@ -31,5 +31,5 @@ export const SearchModule = ({ users, videos, searchTerm }: ISearchModuleProps) 
       </div>
       {activeTab.component}
     </>
-  );
-};
+  )
+}

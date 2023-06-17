@@ -1,9 +1,9 @@
-import Image from 'next/image';
-import { GoVerified } from 'react-icons/go';
-import { IUser } from '@/types/user';
+import Image from 'next/image'
+import { GoVerified } from 'react-icons/go'
+import { IUser } from '@/types/user'
 
 interface IUserInfoProps {
-  user: IUser;
+  user: IUser
 }
 
 export const UserInfo = ({ user }: IUserInfoProps) => {
@@ -24,5 +24,5 @@ export const UserInfo = ({ user }: IUserInfoProps) => {
         <h4>{`${user.givenName || ''} ${user.familyName || ''}`}</h4>
       </div>
     </>
-  );
-};
+  )
+}
