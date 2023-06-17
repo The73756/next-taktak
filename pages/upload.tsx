@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { NextPageWithLayout } from '@/pages/_app';
-import { VideoUploader } from '@/modules/VideoUploader';
-import { LayoutWithOnlyHeader } from '@/components/LayoutWithOnlyHeader';
+import { VideoUploader } from '@/modules/video-uploader';
+import { LayoutWithOnlyHeader } from '@/components/layout-with-only-header';
 
 const Upload: NextPageWithLayout = () => {
   return (

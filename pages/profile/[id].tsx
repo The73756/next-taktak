@@ -4,10 +4,10 @@ import { NextPageWithLayout } from '@/pages/_app';
 import { ReactElement, useState } from 'react';
 import { IUserDetail } from '@/types/user';
 import { BASE_URL } from '@/utils/constants';
-import { Layout } from '@/components/Layout';
-import { VideoList } from '@/modules/VideoList';
-import { TabSwitcher } from '@/components/TabSwitcher';
-import { UserInfo } from '@/ui/UserInfo';
+import { Layout } from '@/components/layout';
+import { TabSwitcher } from '@/components/tab-switcher';
+import { UserInfo } from '@/ui/user-info';
+import { VideoList } from '@/modules/video-list';
 
 interface IProfileProps {
   detail: IUserDetail;

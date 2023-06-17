@@ -6,8 +6,8 @@ import { useRouter } from 'next/router';
 import { IUser } from '@/types/user';
 import { IVideo } from '@/types/video';
 import { ReactElement } from 'react';
-import { Layout } from '@/components/Layout';
-import { SearchModule } from '@/modules/SearchModule';
+import { Layout } from '@/components/layout';
+import { SearchModule } from '@/modules/search';
 
 interface ISearchProps {
   videos: IVideo[];
@@ -29,7 +29,7 @@ Search.getLayout = function getLayout(page: ReactElement) {
   return <Layout>{page}</Layout>;
 };
 
-// TODO: Уйти от gssp, фетчить данные на клиенте из SearchModule (UserList, SearchVideoList)
+// TODO: Уйти от gssp, фетчить данные на клиенте из search (UserList, SearchVideoList)
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { data } = await axios.get<ISearchProps>(

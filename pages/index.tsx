@@ -4,10 +4,10 @@ import { GetServerSidePropsContext } from 'next';
 import { ReactElement, useEffect } from 'react';
 import { NextPageWithLayout } from '@/pages/_app';
 import { IVideo } from '@/types/video';
-import { Layout } from '@/components/Layout';
+import { Layout } from '@/components/layout';
 import { BASE_URL } from '@/utils/constants';
-import useVideoStore from '@/store/videoStore';
-import { HomeVideoList } from '@/modules/VideoList/components/HomeVideoList';
+import useVideoStore from '@/store/video-store';
+import { HomeVideoList } from '@/modules/video-list';
 
 interface IVideoResponse {
   videos: IVideo[];
