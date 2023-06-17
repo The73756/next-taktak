@@ -8,7 +8,7 @@ interface IVideoListProps {
 
 export const VideoList = ({ videos }: IVideoListProps) => {
   return (
-    <div className="videos flex h-full flex-col gap-10">
+    <div className="videos mr-3 flex h-full flex-col gap-10 md:mr-0">
       {videos.length > 0 ? (
         videos.map((video) => <VideoCard key={video._id} post={video} />)
       ) : (

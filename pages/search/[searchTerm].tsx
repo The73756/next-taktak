@@ -29,8 +29,6 @@ Search.getLayout = function getLayout(page: ReactElement) {
   return <Layout>{page}</Layout>
 }
 
-// TODO: Уйти от gssp, фетчить данные на клиенте из search (UserList, SearchVideoList)
-
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { data } = await axios.get<ISearchProps>(
     `${BASE_URL}/api/search/${context.query.searchTerm}`

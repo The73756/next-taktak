@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect } from 'react'
+import { AiOutlineReload } from 'react-icons/ai'
 import { GoVerified } from 'react-icons/go'
 import useAuthStore from '@/store/auth-store'
 
@@ -15,7 +16,13 @@ export const SuggestedAccounts = () => {
 
   if (!userProfile) return null
 
-  if (suggestedUsers.length === 0) return <h2>Нет рекомендуемых пользователей</h2>
+  if (suggestedUsers.length === 0)
+    return (
+      <h2 className="flex items-center justify-center">
+        <span className="hidden xl:inline">Reload for suggested accounts</span>
+        <AiOutlineReload className="block text-xl text-accent xl:hidden" />
+      </h2>
+    )
 
   return (
     <div className="border-gray-200 pb-4 xl:border-b-2">
@@ -23,7 +30,7 @@ export const SuggestedAccounts = () => {
       <div>
         {suggestedUsers.map((postedBy) => (
           <Link key={postedBy._id} href={`/profile/${postedBy._id}`}>
-            <div className="flex cursor-pointer items-center gap-3 rounded-md rounded p-2 font-semibold transition-colors duration-300 hover:bg-primary">
+            <div className="flex cursor-pointer items-center gap-3 rounded-md p-2 font-semibold transition-colors duration-300 hover:bg-primary">
               <div className="h-8 w-8">
                 <Image
                   width={34}

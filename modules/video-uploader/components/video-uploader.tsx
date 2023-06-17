@@ -23,7 +23,6 @@ export const VideoUploader = () => {
         console.log(error)
       }
 
-      // TODO: Add a success message + loader
       void router.push(Routes.HOME)
     }
   }

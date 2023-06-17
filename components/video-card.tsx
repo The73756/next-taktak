@@ -13,7 +13,7 @@ export const VideoCard = ({ post }: IVideoCardProps) => {
   const { postedBy, video } = post
 
   return (
-    <article className="flex flex-col border-b-2 border-gray-200 pb-6">
+    <article className="flex flex-col border-b-2 border-gray-200 pb-12 md:pb-6">
       <Link
         href={`${Routes.PROFILE}/${postedBy._id}`}
         className="flex gap-3 rounded p-2 font-semibold"
