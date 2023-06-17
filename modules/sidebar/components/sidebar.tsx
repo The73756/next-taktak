@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { AiFillHome, AiOutlineMenu } from 'react-icons/ai'
 import { ImCancelCircle } from 'react-icons/im'
 import { Discover, Footer, SuggestedAccounts } from '@/modules/sidebar'
+import { Routes } from '@/utils/constants'
 
 export const Sidebar = () => {
   const [showSidebar, setShowSidebar] = useState(true)
@@ -18,11 +19,11 @@ export const Sidebar = () => {
       {showSidebar && (
         <div className="mb-10 flex w-20 flex-col justify-start border-r-2 border-gray-100 p-3 xl:w-400 xl:border-0">
           <div className="border-gray-200 xl:border-b-2 xl:pb-4">
-            <Link href="/" className="normalLink">
+            <Link href={Routes.HOME} className="normalLink">
               <span>
                 <AiFillHome className="text-xl" />
               </span>
-              <span className="block hidden text-xl xl:block">For You</span>
+              <span className="hidden text-xl xl:block">For You</span>
             </Link>
           </div>
 

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { AiOutlineLogout } from 'react-icons/ai'
 import { IoMdAdd } from 'react-icons/io'
 import useAuthStore from '@/store/auth-store'
+import { Routes } from '@/utils/constants'
 import { createOrGetUser } from '@/utils/user-auth'
 
 export const UserArea = () => {
@@ -23,11 +24,14 @@ export const UserArea = () => {
 
   return (
     <div className="flex gap-5 md:gap-10">
-      <Link href="/upload" className="flex items-center gap-2 border-2 px-2 font-semibold md:px-4">
+      <Link
+        href={Routes.UPLOAD}
+        className="flex items-center gap-2 border-2 px-2 font-semibold md:px-4"
+      >
         <IoMdAdd className="text-xl" /> <span className="hidden md:block">Upload</span>
       </Link>
       {userProfile.image && (
-        <Link href="/">
+        <Link href={`${Routes.PROFILE}/${userProfile._id}`}>
           <Image
             src={userProfile.image}
             alt="Your profile image"

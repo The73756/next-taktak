@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useRef, useState } from 'react'
 import { BsFillPauseFill, BsFillPlayFill } from 'react-icons/bs'
 import { HiVolumeOff, HiVolumeUp } from 'react-icons/hi'
+import { Routes } from '@/utils/constants'
 
 interface IVideoPlayerProps {
   postId: string
@@ -27,7 +28,7 @@ export const VideoPlayer = ({ postId, videoUrl }: IVideoPlayerProps) => {
 
   return (
     <div className="group relative gap-4 lg:ml-20">
-      <Link href={`/detail/${postId}`} className="rounded-3xl">
+      <Link href={`${Routes.DETAIL}/${postId}`} className="rounded-3xl">
         <video
           loop
           ref={videoRef}

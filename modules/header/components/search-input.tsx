@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { FormEvent, useState } from 'react'
 import { BiSearch } from 'react-icons/bi'
+import { Routes } from '@/utils/constants'
 
 export const SearchInput = () => {
   const [searchValue, setSearchValue] = useState('')
@@ -10,7 +11,7 @@ export const SearchInput = () => {
     e.preventDefault()
 
     if (searchValue) {
-      void router.push(`/search/${searchValue}`)
+      void router.push(`${Routes.SEARCH}/${searchValue}`)
     }
   }
 

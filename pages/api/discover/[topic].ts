@@ -1,14 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { client } from '@/utils/client'
+import { getQueryParams } from '@/utils/get-query-params'
 import { topicPostsQuery } from '@/utils/queries'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
     const { topic } = req.query
-    const page = Number(req.query.page || '1')
-    const limit = Number(req.query.limit || '4')
-    const offset = (page - 1) * limit
-    const calculatedLimit = limit + offset
+    const { offset, calculatedLimit } = getQueryParams(req)
 
     try {
       const data = await client.fetch(topicPostsQuery(String(topic), offset, calculatedLimit))

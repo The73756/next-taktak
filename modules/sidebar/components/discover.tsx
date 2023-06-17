@@ -1,12 +1,16 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { topics } from '@/utils/topics'
 
 export const Discover = () => {
   const router = useRouter()
   const { topic } = router.query
   const [activeTopic, setActiveTopic] = useState(topic)
+
+  useEffect(() => {
+    setActiveTopic(topic)
+  }, [topic])
 
   const handleTopicClick = (topic: string) => {
     if (activeTopic === topic) {

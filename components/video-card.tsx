@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { GoVerified } from 'react-icons/go'
 import { VideoPlayer } from '@/components/video-player'
 import { IVideo } from '@/types/video'
+import { Routes } from '@/utils/constants'
 
 interface IVideoCardProps {
   post: IVideo
@@ -13,7 +14,10 @@ export const VideoCard = ({ post }: IVideoCardProps) => {
 
   return (
     <article className="flex flex-col border-b-2 border-gray-200 pb-6">
-      <Link href={`/profile/${postedBy._id}`} className="flex gap-3 rounded p-2 font-semibold">
+      <Link
+        href={`${Routes.PROFILE}/${postedBy._id}`}
+        className="flex gap-3 rounded p-2 font-semibold"
+      >
         <div className="h-10 w-10 md:w-16">
           <Image
             src={postedBy.image}

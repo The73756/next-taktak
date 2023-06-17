@@ -21,8 +21,6 @@ export const LikeButton = ({ likes, flex, handleClick }: ILikeButtonProps) => {
 
   useEffect(() => {
     setIsLiked(likesInfo.liked)
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleLikeClick = async () => {

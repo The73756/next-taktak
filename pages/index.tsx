@@ -3,23 +3,17 @@ import { GetServerSidePropsContext } from 'next'
 import Head from 'next/head'
 import { ReactElement, useEffect } from 'react'
 import { Layout } from '@/components/layout'
-import { HomeVideoList } from '@/modules/video-list'
+import { VideoList } from '@/modules/video-list'
 import { NextPageWithLayout } from '@/pages/_app'
 import useVideoStore from '@/store/video-store'
-import { IVideo } from '@/types/video'
+import { IVideoResponse } from '@/types/video'
 import { BASE_URL } from '@/utils/constants'
 
-interface IVideoResponse {
-  videos: IVideo[]
-  total: number
-}
-
 const Home: NextPageWithLayout<IVideoResponse> = ({ videos, total }) => {
-  const { setVideos, setTotalVideos } = useVideoStore()
+  const { setVideos } = useVideoStore()
 
   useEffect(() => {
     setVideos(videos)
-    setTotalVideos(total)
   }, [videos, total])
 
   return (
@@ -31,7 +25,7 @@ const Home: NextPageWithLayout<IVideoResponse> = ({ videos, total }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="h-full">
-        <HomeVideoList />
+        <VideoList videos={videos} />
       </main>
     </>
   )

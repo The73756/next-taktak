@@ -6,6 +6,7 @@ import { updateLike } from '@/modules/detail/http/update-like'
 import authStore from '@/store/auth-store'
 import { IVideo } from '@/types/video'
 import { UserInfo } from '@/ui/user-info'
+import { Routes } from '@/utils/constants'
 
 interface IVideoInfoProps {
   post: IVideo
@@ -42,7 +43,7 @@ export const DetailVideoInfo = ({ post }: IVideoInfoProps) => {
   return (
     <div className="relative flex w-[1000px] flex-col md:w-[900px] lg:w-[700px]">
       <div className="mt-10">
-        <Link href={`/profile/${video.postedBy._id}`}>
+        <Link href={`${Routes.PROFILE}/${video.postedBy._id}`}>
           <div className="mb-4 flex w-full cursor-pointer gap-4 bg-white pl-10">
             <UserInfo user={video.postedBy} />
           </div>

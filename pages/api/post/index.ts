@@ -1,15 +1,13 @@
 /* eslint-disable no-case-declarations */
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { client } from '@/utils/client'
+import { getQueryParams } from '@/utils/get-query-params'
 import { allPostsQuery } from '@/utils/queries'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case 'GET':
-      const page = Number(req.query.page || '1')
-      const limit = Number(req.query.limit || '4')
-      const offset = (page - 1) * limit
-      const calculatedLimit = limit + offset
+      const { offset, calculatedLimit } = getQueryParams(req)
 
       try {
         const data = await client.fetch(allPostsQuery(offset, calculatedLimit))

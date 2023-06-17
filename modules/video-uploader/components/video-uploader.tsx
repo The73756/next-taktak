@@ -2,6 +2,7 @@ import { SanityAssetDocument } from '@sanity/client'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import useAuthStore from '@/store/auth-store'
+import { Routes } from '@/utils/constants'
 import { topics } from '@/utils/topics'
 import { createVideo } from '../http/create-video'
 import { VideoCaptionBlock } from './video-caption-block'
@@ -23,7 +24,7 @@ export const VideoUploader = () => {
       }
 
       // TODO: Add a success message + loader
-      void router.push('/')
+      void router.push(Routes.HOME)
     }
   }
 
