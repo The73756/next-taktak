@@ -1,6 +1,6 @@
 # **Tak-Tak** - TikTok clone
 
-Небольшой видео-хостинг на Next JS и Sanity 2
+Небольшой видеохостинг на Next JS и Sanity 2
 
 ## Стек
 
